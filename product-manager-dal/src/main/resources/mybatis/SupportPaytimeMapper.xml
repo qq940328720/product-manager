@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aishang.product.dao.SupportPaytimeDao">
+    <resultMap id="BaseResultMap" type="com.aishang.product.model.SupportPaytime">
+        <id column="id" property="id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="product_code" property="productCode" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="pay_time" property="payTime" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="paytime_unit" property="paytimeUnit" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="deleted" property="deleted" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="insert_time" property="insertTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, product_code, pay_time, paytime_unit, deleted, insert_time, update_time
+  </sql>
+
+    <select id="getSupportPaytimesByProductCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+     product_code, pay_time, paytime_unit
+     from product_support_paytime
+    where product_code = #{productcode} AND deleted = 0
+  </select>
+
+    <insert id="addSupportPaytimes" parameterType="java.util.List">
+        insert into product_support_paytime
+        (product_code, pay_time, paytime_unit, deleted)
+        values
+        <foreach collection="adds" item="supportPaytime" index="index" separator=",">
+            (
+            #{supportPaytime.productCode},
+            #{supportPaytime.payTime},
+            #{supportPaytime.paytimeUnit},
+            #{supportPaytime.deleted}
+            )
+        </foreach>
+    </insert>
+
+    <delete id="deleteSupportPaytimesByProductCode" parameterType="java.lang.String">
+        delete from product_support_paytime
+        where product_code = #{productcode} AND id >0
+    </delete>
+
+    <!--通过产品编码列表获取期数(App)-->
+    <select id="getSupportPaytimesByType" parameterType="java.util.List" resultMap="BaseResultMap">
+        select
+        product_code, pay_time, paytime_unit
+        from product_support_paytime where deleted = 0
+        <if test="productcodes != null and productcodes.size > 0">
+            AND product_code IN
+            <foreach collection="productcodes" item="item" index="index" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        ORDER BY paytime_unit,pay_time
+    </select>
+
+</mapper>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aishang.product.dao.RepaymentPackageDao">
+    <resultMap id="BaseResultMap" type="com.aishang.product.model.RepaymentPackage">
+        <id column="id" property="id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="package_code" property="packageCode" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="name" property="name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="value" property="value" javaType="java.math.BigDecimal" jdbcType="DECIMAL"/>
+        <result column="type" property="type" javaType="java.lang.Integer" jdbcType="TINYINT"/>
+        <result column="paytime_type" property="paytimeType" javaType="java.lang.Integer" jdbcType="TINYINT"/>
+        <result column="is_choice" property="isChoice" javaType="java.lang.Integer" jdbcType="TINYINT"/>
+        <result column="enabled" property="enabled" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="deleted" property="deleted" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="insert_time" property="insertTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, package_code, name, value, type, paytime_type, is_choice, enabled, deleted, insert_time, 
+    update_time
+  </sql>
+
+    <select id="getRepaymentPackagesByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        rp.package_code, rp.name,rp.value,rp.type,rp.paytime_type,rp.is_choice
+        from product a,
+        repayment_package_config b,
+        repayment_package rp
+        where
+        a.product_code=b.product_code AND b.package_code=rp.package_code AND
+        a.product_code = #{productCode,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getRepaymentPackagesByConditions" resultMap="BaseResultMap">
+        select * from repayment_package
+        where 1=1 AND deleted = 0
+        <if test="name!=null and name!=''">AND name = #{name}
+            <if test="type!=null">AND type = #{type}
+                <if test="paytimetype!=null">AND paytime_type = #{paytimetype}
+                </if>
+            </if>
+        </if>
+    </select>
+
+    <select id="getRepaymentPackagesByCodes" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select * from repayment_package
+        where package_code in
+        <foreach collection="codes" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="getRepaymentPackageByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select * from repayment_package
+        where package_code = #{packageCode}
+    </select>
+
+</mapper>

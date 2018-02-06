@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>产品管理系统</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="../resources/bower_components/bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../resources/bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../resources/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="../resources/dist/css/mytree.css">
+  <link rel="stylesheet" href="../resources/dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="../resources/css/style.css">
+  <link rel="stylesheet" href="../resources/css/addProduct.css">
+  <link type="text/css" rel="stylesheet" href="../resources/bower_components/bootstrap-datepicker/bootstrap-datepicker.css" />
+  <link rel="stylesheet" type="text/css" href="../resources/bower_components/bootstrap/css/bootstrap-treeview.min.css">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<body class="hold-transition skin-blue sidebar-mini" ng-app="myApp" ng-controller="mainCont">
+<div class="wrapper">
+
+  <!-- Main Header -->
+  <header class="main-header">
+
+    <!-- Logo -->
+    <a href="javascript:;" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini">AS</span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg">AiShangJinFu</span>
+    </a>
+
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top" role="navigation">
+      <!-- 折叠菜单（三个横线）-->
+       <a href="javascript:;" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+      <!-- Navbar Right Menu -->
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!--当前登录人信息-->
+          <li class="dropdown user user-menu" >
+            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="../resources/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <span class="hidden-xs" ng-bind="namettt"></span>
+            </a>
+            <ul class="dropdown-menu" style="box-shadow: 0 0 2px #6F6F6F;">
+              <li class="user-header">
+                <img src="../resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <p>
+                  <span style="font-size:14px;padding-bottom:10px;display:inline-block;">陕西爱尚商业运营管理有限公司</span>
+                  <small ng-bind="namettt"></small>
+                </p>
+              </li>
+              <li class="user-footer">
+                <div class="text-center">
+                  <a href="javascript:;" style="background:#50AD92;color:#fff;border-radius: 5px;width:100px;"class="btn btn-default btn-flat" ng-click="signOut()">退出</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown notifications-menu">
+            <!-- Menu toggle button -->
+            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-bell-o"></i>
+              <span class="label label-warning"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">You have 10 notifications</li>
+              <li>
+                <!-- Inner Menu: contains the notifications -->
+                <ul class="menu">
+                  <li><!-- start notification -->
+                    <a href="javascript:;">
+                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                    </a>
+                  </li>
+                  <!-- end notification -->
+                </ul>
+              </li>
+              <li class="footer"><a href="javascript:;">View all</a></li>
+            </ul>
+          </li>
+          <!-- Control Sidebar Toggle Button -->
+          <li>
+            <a href="javascript:;" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="../resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p ng-bind="namettt"></p>
+          <!-- 状态 -->
+          <a href="javascript:;"><i class="fa fa-circle text-success"></i> 在线</a>
+        </div>
+      </div>
+
+      <!-- 搜索 -->
+      <!--<form action="javascript:;" method="get" class="sidebar-form">-->
+        <!--<div class="input-group">-->
+          <!--<input type="text" name="q" class="form-control" placeholder="搜索...">-->
+          <!--<span class="input-group-btn">-->
+              <!--<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>-->
+              <!--</button>-->
+            <!--</span>-->
+        <!--</div>-->
+      <!--</form>-->
+      <!-- /.search form -->
+
+      <!-- Sidebar Menu -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <!-- Optionally, you can add icons to the links -->
+        <li class="treeview active" ng-repeat="item in jsonDataTree">
+          <a href="javascript:;"><i class="fa fa-sitemap"></i> <span ng-bind="item.name"></span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li ng-repeat="item in child" ><a href="#{{item.url}}"><i class="fa fa-circle-o"></i><span ng-bind="item.name" style="font-size: 14px"></span></a></li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </aside>
+
+  <!-- ng-view内容正文 -->
+  <div class="content-wrapper">
+    <div ng-view></div>
+
+  </div>
+
+</div>
+
+<!--alert弹框-->
+<div class="mask" id="mask"></div>
+<div class="dialog" id="alertlog" style="height: 160px;">
+  <div class="dialog-title"> </div>
+  <div class="dialog-content"></div>
+  <div class="dialog-hint" style="text-indent: 0; text-align: center;">{{alertlog}}</div>
+  <div class="row" style="width: auto;">
+    <div class="col-md-4 col-lg-4 col-sm-4"></div>
+    <div class="col-md-4 col-lg-4 col-sm-4">
+      <button class="btn btn-default searching col-md-3  col-lg-3 col-sm-3" style="height:35px;width: 100%;" ng-click="hideAlert()">确定</button>
+    </div>
+    <div class="col-md-4 col-lg-4 col-sm-4"></div>
+  </div>
+</div>
+
+<script src="../resources/bower_components/jQuery/jquery-2.2.3.min.js"></script>
+<script src="../resources/bower_components/jQuery/json.js"></script>
+<script src="../resources/bower_components/bootstrap/js/bootstrap.min.js"></script>
+<!--<script src="../resources/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>-->
+<script src="../resources/dist/js/adminlte.min.js"></script>
+<script src="../resources/bower_components/angularjs/js/angular.min.js"></script>
+<script src="../resources/bower_components/angularjs/js/angular-route.min.js"></script>
+<script src="../resources/bower_components/angularjs/js/angular-resource.min.js"></script>
+<script src="../resources/app/app.js"></script>
+<script src="../resources/app/controller/main.js"></script>
+<script src="../resources/app/controller/product.js"></script>
+<script src="../resources/bower_components/bootstrap/js/bootstrap-treeview.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<b:beans xmlns="http://www.springframework.org/schema/security" xmlns:b="http://www.springframework.org/schema/beans"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.1.xsd">
+
+    <http pattern="/swagger-ui.html*" security="none"/>
+    <http pattern="/webjars/**" security="none"/>
+    <http pattern="/swagger-resources/**" security="none"/>
+    <http pattern="/v2/api-docs" security="none"/>
+    <!-- 通配符**匹配所以字符 -->
+    <http pattern="/file/down/**" security="none"/>
+
+    <http pattern="/account/create" security="none"/>
+    <http pattern="/account/code/**" security="none"/>
+    <http pattern="/account/allrule/**" security="none"/>
+    <http pattern="/account/authapp" security="none"/>
+    <http pattern="/admin/authapp" security="none"/>
+    <http pattern="/admin/rules" security="none"/>
+    <http pattern="/account/username" security="none"/>
+    <http pattern="/account/leafgroup/**" security="none"/>
+    <http pattern="/account/modify/accountKey/**" security="none"/>
+    <http pattern="/account/reload" security="none"/>
+    <http pattern="/account/byapp/**" security="none"/>
+    <http pattern="/rule-manager/monitor" security="none"/>
+    <http pattern="/app/reload" security="none"/>
+    <http pattern="/dictionary**" security="none"/>
+    <http pattern="/product/**/**" security="none"/>
+    <http pattern="/product/**" security="none"/>
+    <http pattern="/userRule/**" security="none"/>
+    <http pattern="/outProduct/**" security="none"/>
+</b:beans>

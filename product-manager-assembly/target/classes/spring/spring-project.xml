@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd"
+       default-lazy-init="true">
+
+    <description>Spring配置</description>
+    <!-- 使用annotation自动注册bean, 并检查@Required,@Autowired的属性已被注入. -->
+    <context:component-scan base-package="com.aishang.product">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:exclude-filter type="annotation"
+                                expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+    </context:component-scan>
+
+
+    <!-- 以AspectJ方式 定义 AOP proxy-target-class="true" 设置默认为cglib进行事务托管 -->
+    <aop:config proxy-target-class="true">
+        <aop:advisor pointcut="execution(* com.aishang.product.adapter..*.*(..))" advice-ref="txAdvice"/>
+    </aop:config>
+    <bean id="springSecurityService" class="com.hc.rule.manager.facade.http.SpringSecurityService"></bean>
+    <bean class="com.aishang.product.assembly.interceptor.ProductManagerAspect"/>
+
+    <bean id="UserInfoClient" class="com.aishang.dictionary.common.client.UserInfoClient"></bean>
+
+    <!-- 加载hc-support-spring-mybatis-mysql-druid模块中druid数据库的基础配置 -->
+    <import resource="classpath*:/spring/applicationContext-dataSource-druid.xml"/>
+    <!--<import resource="classpath*:/spring/cache/applicationContext-cache-jedis.xml"/>-->
+    <import resource="classpath*:/spring/spring-security-ignore.xml"/>
+    <import resource="classpath*:/spring/spring-security-memory.xml"/>
+</beans>

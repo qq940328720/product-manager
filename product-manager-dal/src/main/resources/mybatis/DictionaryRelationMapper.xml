@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aishang.product.dao.DictionaryRelationDao">
+    <resultMap id="BaseResultMap" type="com.aishang.product.model.DictionaryRelation">
+        <id column="id" property="id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="data_code" property="dataCode" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="parent_code" property="parentCode" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="deleted" property="deleted" javaType="java.lang.Byte" jdbcType="TINYINT"/>
+        <result column="insert_time" property="insertTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, data_code, parent_code, deleted, insert_time, update_time
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dictionary_relation
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dictionary_relation
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.aishang.product.model.DictionaryRelation">
+    insert into dictionary_relation (id, data_code, parent_code, 
+      deleted, insert_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{dataCode,jdbcType=VARCHAR}, #{parentCode,jdbcType=VARCHAR}, 
+      #{deleted,jdbcType=TINYINT}, #{insertTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.aishang.product.model.DictionaryRelation">
+        insert into dictionary_relation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="dataCode != null">
+                data_code,
+            </if>
+            <if test="parentCode != null">
+                parent_code,
+            </if>
+            <if test="deleted != null">
+                deleted,
+            </if>
+            <if test="insertTime != null">
+                insert_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="dataCode != null">
+                #{dataCode,jdbcType=VARCHAR},
+            </if>
+            <if test="parentCode != null">
+                #{parentCode,jdbcType=VARCHAR},
+            </if>
+            <if test="deleted != null">
+                #{deleted,jdbcType=TINYINT},
+            </if>
+            <if test="insertTime != null">
+                #{insertTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.aishang.product.model.DictionaryRelation">
+        update dictionary_relation
+        <set>
+            <if test="dataCode != null">
+                data_code = #{dataCode,jdbcType=VARCHAR},
+            </if>
+            <if test="parentCode != null">
+                parent_code = #{parentCode,jdbcType=VARCHAR},
+            </if>
+            <if test="deleted != null">
+                deleted = #{deleted,jdbcType=TINYINT},
+            </if>
+            <if test="insertTime != null">
+                insert_time = #{insertTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.aishang.product.model.DictionaryRelation">
+    update dictionary_relation
+    set data_code = #{dataCode,jdbcType=VARCHAR},
+      parent_code = #{parentCode,jdbcType=VARCHAR},
+      deleted = #{deleted,jdbcType=TINYINT},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <!--添加字典-->
+    <insert id="add" parameterType="com.aishang.product.model.DictionaryRelation">
+        insert into dictionary_relation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="dataCode != null">
+                data_code,
+            </if>
+            <if test="parentCode != null">
+                parent_code,
+            </if>
+            <if test="deleted != null">
+                deleted,
+            </if>
+            <if test="insertTime != null">
+                insert_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="dataCode != null">
+                #{dataCode,jdbcType=VARCHAR},
+            </if>
+            <if test="parentCode != null">
+                #{parentCode,jdbcType=VARCHAR},
+            </if>
+            <if test="deleted != null">
+                #{deleted,jdbcType=BIT},
+            </if>
+            <if test="insertTime != null">
+                #{insertTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <!--修改字典编号-->
+    <update id="update" parameterType="com.aishang.product.model.DictionaryRelation">
+        update dictionary_relation
+        <set>
+            <if test="parentCode != null">
+                parent_code = #{parentCode,jdbcType=VARCHAR},
+            </if>
+            <if test="deleted != null">
+                deleted = #{deleted,jdbcType=BIT},
+            </if>
+            <if test="insertTime != null">
+                insert_time = #{insertTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where data_code = #{dataCode,jdbcType=VARCHAR}
+    </update>
+
+    <select id="getDataCountByCode" resultType="java.lang.Integer">
+        select count(*) from dictionary_relation
+        where data_code = #{dataCode,jdbcType=VARCHAR} and parent_code = #{parentCode,jdbcType=VARCHAR}
+    </select>
+
+</mapper>

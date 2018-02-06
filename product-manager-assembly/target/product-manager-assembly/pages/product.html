@@ -1,0 +1,1802 @@
+<div ng-controller="productCont">
+    <section class="content-header">
+        <h1>
+           {{oneName}}
+            <small>Product List</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> {{namest}}</a></li>
+            <li class="active">{{oneName}}</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content container-fluid">
+        <!-- 内容部分-->
+        <section class="content">
+            <div class="row">
+                <!-- 表格 -->
+                <div class="col-xs-12 col-md-12  col-lg-12 col-sm-12 padmar0">
+                    <div class="box">
+                        <!-- /.box-header -->
+                        <div class="box-header" style="padding: 20px 12px 2px 12px;">
+                            <!-- 顶部菜单栏 -->
+                            <div class="btn-group boxss col-md-12  col-lg-12 col-sm-12 padmar0" style="line-height: 28px;">
+                                <div class="col-md-4  col-lg-4 col-sm-4 col-xs-4"
+                                     style="padding-left: 0;padding-right: 0;">
+                                    <span class="shopname">产品分类</span>
+                                    <select class="col-md-3  col-lg-3 col-sm-3 col-xs-3 quxian julis "  ng-model="prolist.proTypes" ng-change="getType2()">
+                                        <option value="">-全部-</option>
+                                        <option ng-repeat="por in Type1List" value="{{por.name}}" >{{por.displayName}}</option>
+                                    </select>
+                                    <select class="col-md-3  col-lg-3 col-sm-3 col-xs-3 quxian julis bgw" ng-disabled="prolist.proTypes==''" ng-model="prolist.proTypest" ng-change="getType3()">
+                                        <option value="">-全部-</option>
+                                        <option ng-repeat="por in Type2List" value="{{por.name}}" >{{por.displayName}}</option>
+                                    </select>
+                                    <select class="col-md-3  col-lg-3 col-sm-3 col-xs-3 quxian julis bgw" ng-disabled="prolist.proTypest==''" ng-model="prolist.proTypesg">
+                                        <option value="">-全部-</option>
+                                        <option ng-repeat="por in Type3List" value="{{por.name}}" >{{por.displayName}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2  col-lg-2 col-sm-2 col-xs-2">
+                                    <span class="col-md-4  col-lg-4 col-sm-4 padmar0">产品状态</span>
+                                    <select class="col-md-8  col-lg-8 col-sm-8 col-xs-8 quxian" ng-model="prolist.proState">
+                                        <option value="">-全部-</option>
+                                        <option value="{{item.name}}" ng-repeat="item in proStates" ng-bind="item.displayName"></option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2  col-lg-2 col-sm-2 col-xs-2" style="padding-left:20px;">
+                                    <span class="col-md-4  col-lg-4 col-sm-4 padmar0 text-center">产品名称</span>
+                                    <input class="col-md-8  col-lg-8 col-sm-8  quxian" type="text" placeholder="请输入名称" value="" ng-model="prolist.proName">
+                                </div>
+                                <div class=" col-md-2  col-lg-2 col-sm-2 ">
+                                    <button class="btn btn-green searching col-md-3  col-lg-3 col-sm-3 col-xs-3" ng-click="lookup()" style="padding: 6px 0px !important;">查询</button>
+                                    <div class="col-md-2  col-lg-2 col-sm-2 col-xs-2"></div>
+                                    <button class="btn btn-green searching col-md-3  col-lg-3 col-sm-3 col-xs-3" ng-click="reset()" style="padding: 6px 0px !important;">重置</button>
+                                </div>
+                                <div class="col-md-2  col-lg-2 col-sm-2 col-xs-2">
+                                    <div class="col-md-7  col-lg-7 col-sm-7 col-xs-7"></div>
+                                    <button class="btn btn-green reserting  col-md-5  col-lg-5 col-sm-5 col-xs-5" style="padding: 6px 0px !important;"  ng-click="getQishu();showAddPro()">添加产品</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 表格 -->
+                        <div class="box-body" style="padding: 14px;">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead >
+                                <tr>
+                                    <th class="text-center">序号</th>
+                                    <th class="text-center">产品编号</th>
+                                    <th class="text-center">产品分类</th>
+                                    <th class="text-center">产品名称</th>
+                                    <th class="text-center">期数</th>
+                                    <th class="text-center">资金渠道</th>
+                                    <th class="text-center">计息方式</th>
+                                    <th class="text-center">产品状态</th>
+                                    <th class="text-center">操作</th>
+                                </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                <tr  ng-hide="none" >
+                                    <td colspan="9" ng-bind="noneTip"></td>
+                                </tr>
+                                <tr ng-hide="!none" ng-repeat="item in rowsList" ng-class="{'highLight':currentIdx === $index}" ng-mouseover="removeHl()">
+                                    <td>{{$index+1}}</td>
+                                    <td>{{item.productCode}}</td>
+                                    <td>{{item.productType}}</td>
+                                    <td ng-bind="item.productName|textLengthSet:true:10:'...'" title="{{item.productName}}"></td>
+                                    <td>{{item.supportPayTime}}</td>
+                                    <td>{{item.moneyResource.displayName}}</td>
+                                    <td >{{item.interestType.displayName}}</td>
+                                    <td>{{item.state.displayName}}</td>
+                                    <td class="caozuo">
+                                        <span ng-show="item.state.displayName=='正常' ||  item.state.displayName=='已禁用' || item.state.displayName=='已驳回' || item.state.displayName=='已拒绝'"   ng-click="chakan(item.bizid,'view-data',$index)">查看</span>
+                                        <span ng-show="item.state.displayName=='正常' || item.state.displayName=='已禁用' || item.state.displayName=='已驳回'" ng-click="editData(item.bizid,$index)">编辑</span>
+                                        <span ng-show="item.state.displayName=='正常'" ng-click="disables(item.bizid,$index)">禁用</span>
+                                        <span ng-show="item.state.displayName=='待审核'" ng-click="chakan(item.bizid,'audit-data',$index)">审核</span>
+                                        <span ng-show="item.state.displayName=='已禁用'" ng-click="enablest(item.bizid,$index)">启用</span>
+                                        <span ng-show="item.state.displayName=='已禁用'" ng-click="deleteest(item.bizid)">删除</span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <div class=" form-inline">
+                                <div class="col-md-8 padmar0">
+                                    <ul class="pagination">
+                                        <li ng-class="{'disabled':disabledArr[0]}">
+                                            <a href="javaScript:void(null);" ng-click="homeKey()">首页</a>
+                                        </li>
+                                        <li ng-class="{'disabled':disabledArr[1]}">
+                                            <a href="javaScript:void(null);"  ng-click="prevKey()">上一页</a>
+                                        </li>
+                                        <li ng-click="tapNmbKey(x.nmb,$index)" ng-repeat="x in numberKeyList" ng-model="x.nmb">
+                                            <a ng-class="{'bgcolor337AB7':x.isColor}" href="javaScript:void(null);" ng-bind="x.nmb"></a>
+                                            <!--<span ng-bind="x.nmb"></span>-->
+                                        </li>
+                                        <li ng-class="{'disabled':disabledArr[2]}">
+                                            <a href="javaScript:void(null);"  ng-click="nextKey()">下一页</a>
+                                        </li>
+                                        <li ng-class="{'disabled':disabledArr[3]}">
+                                            <a href="javaScript:void(null);"   ng-click="ShadoweKey()">尾页</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4 padmar0" style="margin-top: 20px;">
+                                    {{page}}/{{!PageCount?1:PageCount}}
+                                    <input class="form-control" style="width: 21%;padding-left: 6px;padding-right: 6px!important;" type="number" min="1" max="{{PageCount}}" ng-model="go"/>
+                                    <a class="btn btn-primary btn-sm btn-pad" ng-click="jump(go)">跳转</a>
+                                    <span style="margin-left: 20px;">共：{{!totalPagess?1:totalPagess}}&nbsp;&nbsp;页；</span>
+                                    <span>&nbsp;&nbsp;&nbsp;{{totalData}}&nbsp;&nbsp;条</span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+    <!-- 新建模态弹出窗-->
+    <div   class="modal  fade"   id="add-data" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  data-backdrop="static">
+        <div class="modal-dialog" style="width:880px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">添加产品</h4>
+                </div>
+                <div class="modal-body" style="height:650px;overflow-y:auto;">
+                    <form class="form-horizontal  addDateForm" role="form"  name="addProForm"  novalidate style="padding: 0 40px;">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group row">
+                                    <label class="col-xs-3 control-label">产品分类:</label>
+                                    <div class="col-xs-3" >
+                                        <select name="proType1" class="form-control"  ng-model="addProlist.proTypes" ng-change="addGetType2(addProlist.proTypes)" >
+                                            <option value="">-全部-</option>
+                                            <option ng-repeat="por in addType1List" value="{{por.name}}" >{{por.displayName}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <select name="proType2" class="form-control bgw" ng-disabled="addProlist.proTypes==''"  ng-model="addProlist.proTypest" ng-change="addGetType3(addProlist.proTypest)" >
+                                            <option value="">-全部-</option>
+                                            <option ng-repeat="por in addType2List" value="{{por.name}}" >{{por.displayName}}</option>
+                                        </select>
+
+                                    </div>
+                                    <div class="col-xs-3" >
+                                        <select name="proType3" class="form-control bgw"  ng-disabled="addProlist.proTypest==''"   ng-model="addProlist.proTypesg" >
+                                            <option value="">-全部-</option>
+                                            <option ng-repeat="por in addType3List" value="{{por.name}}" >{{por.displayName}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-md-1 tip"><span class="icon">*</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row add_tit" >产品基本信息</div>
+                        <!--产品名称-->
+                        <div class="row p_t_line">
+                            <div class="col-md-6">
+                                <div class="form-group  row">
+                                    <label  class="col-md-3 control-label">产品名称:</label>
+                                    <div class="col-md-8" ng-class="{'has-error' : addProForm.proName.$error.required && addProForm.proName.$touched || proNameChange }">
+                                        <input type="text" maxlength="30" class="form-control"  ng-model="productName"  name="proName" required  ng-focus="proNameChange=false" placeholder="必填（30字以内）">
+                                    </div>
+                                    <div class="col-md-1 tip"><span class="icon">*</span></div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6  errorTip"  ng-show="addProForm.proName.$error.required && addProForm.proName.$touched || proNameChange"   >
+                                <span>&nbsp;&nbsp;产品名称不能为空</span>
+                            </div>
+                        </div>
+                        <!--支持期数-->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row form-group" ng-repeat="support in supportList">
+                                    <div class="col-md-3 padmar0">
+                                        <label class="control-label" ng-show="$index==0">支持期数:</label>
+                                    </div>
+                                    <div class="col-md-3 txtMid">
+                                        <select class="form-control bgw" style="-moz-appearance: none;-webkit-appearance:none;appearance:none;padding-left: 5px" disabled ng-model="support.paytimeUnit" ng-options="qishu.name as qishu.displayName for qishu in qishuList"></select>
+                                    </div>
+                                    <div class="col-md-3 txtMid">
+                                        <label class="control-label txtMid">{{support.payTime}}</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="control-label operate"><a class="operate" ng-click="removeSupport($index)">删除</a></label>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-md-3 padmar0">
+                                        <label  class="control-label" id="add_zzqs" ng-show="supportList.length==0">支持期数:</label>
+                                    </div>
+                                    <div class="col-md-3" ng-class="{'has-error' : !addProForm.addSupprot.$pristine && addSupport=='select' }">
+                                        <select name="addSupprot" ng-disabled="supportList.length>0" class="form-control bgw" ng-model="addSupport"  ng-options="qishu.name as qishu.displayName for qishu in qishuList">
+                                        </select>
+                                        <div class="text-right" ng-show="!addProForm.addSupprot.$pristine&&addSupport=='select'">
+                                            <div class="errorTip">请选择</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3" ng-class="{'has-error' : !addProForm.addSupportVal.$pristine&&(!supportVal)}">
+                                        <input type="number" min="1" onkeyup="this.value=this.value.replace(/\D|^0/g,'')" onafterpaste="this.value=this.value.replace(/\D|^0/g,'')" maxlength="5" class="form-control" name="addSupportVal" required   placeholder="值"  ng-model="supportVal" ng-focus="addSupportValPaichong=false" >
+                                        <div class="text-right" ng-show="!addProForm.addSupportVal.$pristine&&!supportVal">
+                                            <div class="errorTip">请填写</div>
+                                        </div>
+                                        <div class=" errorTip control-label" style="width: 100px" ng-show="addSupportValPaichong"  ng-init="addSupportValPaichong=false"  >
+                                            <span>支持期数重复</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="control-label operate" ><a class="operate"  ng-click="addSupportDate(addSupport,supportVal)" >添加</a></label>
+                                    </div>
+                                    <div class="col-md-1 tip"><span class="icon" ng-show="supportList.length==0">*</span></div>
+
+                                </div>
+                            </div>
+                            <div class="col-xs-6 errorTip control-label" ng-show="addSupportVal"  ng-init="addSupportVal=false"  >
+                                <span>请添加支持期数</span>
+                            </div>
+                        </div>
+                        <!--单量区间--普通-->
+                        <div class="row"  ng-show="myToggle=='NO'&& commissionList.length>0 ">
+                            <!--普通删除-->
+                            <div class="row padmar0" ng-repeat="child in commissionList">
+                                <div class="col-md-5">
+                                    <div class="form-group"  ng-show="$index==0">
+                                        <div class="col-md-3 padmar0">
+                                            <label  class="control-label"  ng-show="$index==0">提成方案：</label>
+                                        </div>
+                                        <div class="col-md-5" style="text-align: right">
+                                            <label class="control-label">是否为阶梯算法:</label>
+                                        </div>
+                                        <div class="col-xs-1 padmar0">
+                                            <label class="radio-inline"  >
+                                                <input style="margin-top: -4px"  type="radio"  value="YES" ng-model="normalSelected" ng-value="true" ng-init="normalSelected=false" ng-disabled="1">是
+                                            </label>
+                                        </div>
+                                        <div class="col-xs-1 padmar0" style="margin-left: 10px">
+                                            <label class="radio-inline" >
+                                                <input style="margin-top: -4px"  type="radio"  value="NO" ng-model="normalSelected" ng-value="false">否
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 padmar0" >
+                                    <div class="form-group">
+                                        <div class="col-md-3 padmar5">
+                                            <select class="form-control bgw" disabled ng-model="child.position"  ng-options="positions.name as positions.displayName for positions in positionsList">
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3 padmar5">
+                                            <select class="form-control bgw" disabled ng-model="child.commissionType"  ng-options="commissions.name as commissions.displayName for commissions in commissionsList">
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3 padmar5">
+                                            <input type="text" class="form-control bgw" disabled ng-focus placeholder="值"  ng-model="child.commission"/>
+                                            <span ng-show="child.commissionType=='VOLUME'" class="commissionIcon" style="left: 100px;">&yen; </span>
+                                            <span ng-show="child.commissionType=='CASH'" class="commissionIcon" style="left: 100px">%</span>
+                                        </div>
+                                        <label class="col-md-1 padmar5 control-label" ><a class="operate" ng-bind="operation" ng-init="operation='删除'" ng-click="removeCommission($index,normalSelected)"></a></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--普通添加-->
+                            <div class="row padmar0" >
+                                <div class="col-md-5">
+                                </div>
+                                <div class="col-md-7 padmar0" >
+                                    <div class="form-group has-feedback">
+                                        <div class="col-md-3 padmar5" ng-class="{'has-error' : !addProForm.normalPositions.$pristine && addPositions=='select' }">
+                                            <select class="form-control" name="normalPositions" ng-model="addPositions"  ng-options="positions.name as positions.displayName for positions in positionsList">
+                                            </select>
+                                            <div class="text-right" ng-show="!addProForm.normalPositions.$pristine&&addPositions=='select'">
+                                                <div class="errorTip">请选择</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 padmar5" ng-class="{'has-error' : !addProForm.normalCommissions.$pristine && addCommissions=='select'}">
+                                            <select class="form-control" name="normalCommissions" ng-model="addCommissions"  ng-options="commissions.name as commissions.displayName for commissions in commissionsList">
+                                            </select>
+                                            <div class="text-right" ng-show="!addProForm.normalCommissions.$pristine&&addCommissions=='select'">
+                                                <div class="errorTip">请选择</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 padmar5 " ng-class="{'has-error' : !addProForm.addCommissionNormal.$pristine && addProForm.addCommissionNormal.$invalid|| addComChange3 }">
+                                            <input type="number" min="0" name="addCommissionNormal"  class="form-control" style="padding-right: 0px" ng-focus="addComChange3=false" max="{{addCommissions=='CASH'?'100':''}}" pattern="{{addCommissions!='CASH'?'^([1-9][0-9]*)$':''}}" ng-model="addNormalVal"/>
+                                            <span ng-show="addCommissions=='VOLUME'" class="commissionIcon" style="left: 100px;">&yen; </span>
+                                            <span ng-show="addCommissions=='CASH'" class="commissionIcon" style="left: 100px">%</span>
+                                            <div class="text-right" ng-show="!addProForm.addCommissionNormal.$pristine && addProForm.addCommissionNormal.$invalid || addComChange3">
+                                                <div class="errorTip">输入有误</div>
+                                            </div>
+                                        </div>
+                                        <label class="col-md-1 padmar5 control-label" ><a class="operate" ng-click="addCommission(addPositions,addCommissions,addNormalVal)">添加</a></label>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--单量区间--阶梯-->
+                        <div class="row" name="steps" ng-show="myToggle=='YES' && commissionList.length>0 ">
+                            <!--阶梯删除-->
+                            <div class="row padmar0" ng-repeat="child in commissionList">
+                                <div class="col-md-5">
+                                    <div class="form-group" ng-show="$index==0">
+                                        <div class="col-md-3 padmar0">
+                                            <label  class="control-label" id="steps_tcfa">提成方案：</label>
+                                        </div>
+                                        <div class="col-md-5" style="text-align: right">
+                                            <label class="control-label">是否为阶梯算法:</label>
+                                        </div>
+                                        <div class="col-xs-1 padmar0">
+                                            <label class="radio-inline">
+                                                <input style="margin-top: -4px"  type="radio"  value="yes" ng-model="stepsSelected" ng-value="true" ng-init="stepsSelected=true">是
+                                            </label>
+                                        </div>
+                                        <div class="col-xs-1  padmar0" style="margin-left: 10px">
+                                            <label class="radio-inline">
+                                                <input style="margin-top: -4px"  type="radio"   value="no" ng-model="stepsSelected" ng-value="false" ng-disabled="true">否
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 padmar0" >
+                                    <div class="form-group">
+                                        <div class="col-md-2 padmar0">
+                                            <label class="control-label" ng-show="$index%(positionsList.length-1)==0">单量区间：</label>
+                                        </div>
+                                        <div class="col-md-1  padmar0">
+                                            <input type="number"ng-disabled="true" class="form-control padmar0 bgw" ng-model="child.lowerLimit" ng-show="$index%(positionsList.length-1)==0">
+                                        </div>
+                                        <div class="col-md-1 padmar0 txtMid"><span ng-show="$index%(positionsList.length-1)==0">~</span></div>
+                                        <div class="col-md-1  padmar0">
+                                            <input type="number" ng-disabled="true" class="form-control padmar0 bgw"  ng-model="child.upperLimit" ng-show="$index%(positionsList.length-1)==0">
+                                        </div>
+                                        <div class="col-md-2 padmar5">
+                                            <select class="form-control bgw" ng-disabled="true" ng-model="child.position"  ng-options="positions.name as positions.displayName for positions in positionsList">
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2 padmar5">
+                                            <select class="form-control" ng-model="child.commissionType"  ng-options="commissions.name as commissions.displayName for commissions in commissionsList">
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2 padmar5"  ng-class="{'has-error' : !child.commission&&child.commission!=0}">
+                                            <input type="number" min="0" required name="stepsCommission"  class="form-control" max="{{child.commissionType=='CASH'?'100':''}}"  ng-model="child.commission"/>
+                                            <span ng-show="child.commissionType=='VOLUME'" class="commissionIcon">&yen; </span>
+                                            <span ng-show="child.commissionType=='CASH'" class="commissionIcon" >%</span>
+                                            <div class="text-right" ng-show="!child.commission&&child.commission!=0">
+                                                <div class="errorTip">输入有误</div>
+                                            </div>
+                                        </div>
+                                        <label class="col-md-1 padmar5 control-label" ><a class="operate" ng-click="removeCommission($index,myToggle,positionsList)" ng-show="$index%(positionsList.length-1)==0">删除</a></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--阶梯添加-->
+                            <div class="row padmar0" id="add_steps">
+                                <div class="col-md-5">
+                                </div>
+                                <div class="col-md-7 padmar0" >
+                                    <div class="form-group">
+                                        <div class="col-md-2 padmar0">
+                                            <label class="control-label">单量区间：</label>
+                                        </div>
+                                        <div class="col-md-1  padmar0">
+                                            <input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" type="number" min="0" name="minlength" class="form-control padmar0 bgw" ng-model="addDanliangMin" ng-disabled="commissionList.length>0">
+                                            <div class="text-right" ng-show="addDanliangMin&&addDanliangMax&&addDanliangMin>=addDanliangMax||addProForm.maxlength1.$error.min||addProForm.maxlength1.$error.max">
+                                                <div class="errorTip" style="width: 100px">请注意单量区间</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-1 padmar0 txtMid"><span>~</span></div>
+                                        <div class="col-md-1  padmar0" ng-class="{'has-error' : !addProForm.maxlength1.$pristine && addProForm.maxlength1.$error.required }">
+                                            <input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" type="number" min="1"  max="8388607" required name="maxlength1" class="form-control padmar0"  ng-model="addDanliangMax" >
+                                            <div class="text-right" ng-show="!addProForm.maxlength1.$pristine&&addProForm.maxlength1.$error.required">
+                                                <div class="errorTip">请填写</div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-2 padmar5" ng-class="{'has-error' : !addProForm.normalPositions.$pristine && addPositions=='select' }">
+                                            <select class="form-control" ng-model="addPositions" name="normalPositions" ng-options="positions.name as positions.displayName for positions in positionsList">
+                                            </select>
+                                            <div class="text-right" ng-show="!addProForm.normalPositions.$pristine&&addPositions=='select'">
+                                                <div class="errorTip">请选择</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 padmar5" ng-class="{'has-error' : !addProForm.normalCommissions.$pristine && addCommissions=='select' }">
+                                            <select class="form-control" ng-model="addCommissions"  ng-options="commissions.name as commissions.displayName for commissions in commissionsList">
+                                            </select>
+                                            <div class="text-right" ng-show="!addProForm.normalCommissions.$pristine&&addCommissions=='select'">
+                                                <div class="errorTip">请选择</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 padmar5 " ng-class="{'has-error' : !addProForm.addCommissionStep.$pristine && addProForm.addCommissionStep.$invalid || addComChange3}">
+                                            <input type="number" min="0" name="addCommissionStep"  class="form-control" max="{{addCommissions=='CASH'?'100':''}}" ng-focus="addComChange3=false" ng-model="addVal"/>
+                                            <span ng-show="addCommissions=='VOLUME'" class="commissionIcon">&yen; </span>
+                                            <span ng-show="addCommissions=='CASH'" class="commissionIcon" >%</span>
+                                            <div class="text-right" ng-show="addProForm.addCommissionStep.$error.max || addProForm.addCommissionStep.$error.min || addComChange3">
+                                                <div class="errorTip">输入有误</div>
+                                            </div>
+                                        </div>
+                                        <label class="col-md-1 padmar5 control-label" ><a class="operate"  ng-click="addCommission(addPositions,addCommissions,addVal,addDanliangMin,addDanliangMax,positionsList,myToggle)">添加</a></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--单量区间--开关-->
+                        <div class="row" id="myToggle" ng-init="toggleId=1" ng-model="toggleId" ng-show="commissionList.length==0" >
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <div class="col-md-3 padmar0">
+                                        <label  class="control-label" id="toggle_tcfa" >提成方案：</label>
+                                    </div>
+                                    <div class="col-md-5"  style="text-align: right">
+                                        <label class="control-label">是否为阶梯算法:</label>
+                                    </div>
+                                    <div class="col-xs-1 padmar0">
+                                        <label class="radio-inline"  >
+                                            <input style="margin-top: -4px" type="radio" name="stepsMode" value="YES"  ng-model="myToggle" ng-init="myToggle='YES'" >是
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-1 padmar0" style="margin-left: 10px">
+                                        <label class="radio-inline" >
+                                            <input style="margin-top: -4px"  type="radio"  name="stepsMode" value="NO"  ng-model="myToggle" >否
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7 padmar0" >
+                                <div class="form-group"  >
+                                    <div class="col-md-2 padmar0">
+                                        <label class="control-label" ng-show="myToggle=='YES'" >单量区间：</label>
+                                    </div>
+                                    <div class="col-md-1  padmar0" ng-class="{'has-error' : !addProForm.minlength.$pristine && addProForm.minlength.$error.required }">
+                                        <input type="number" min="1"  name="minlength"  class="form-control padmar0 bgw" ng-show="myToggle=='YES'" value="1"  ng-model="danliangMin" ng-init="danliangMin=1" ng-disabled="true">
+                                        <div class="text-right" ng-show="myToggle=='YES'&&!addProForm.minlength.$pristine&&addProForm.minlength.$error.required">
+                                            <div class="errorTip">请填写</div>
+                                        </div>
+                                        <div class="text-right"  ng-show="myToggle=='YES'&&danliangMin&&danliangMax&&danliangMin>=danliangMax||addProForm.maxlength.$error.min || addProForm.minlength.$error.min || addProForm.maxlength.$error.max ">
+                                            <div class="errorTip" style="width: 100px">请注意单量区间</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1 padmar0 txtMid"><span ng-show="myToggle=='YES'" >~</span></div>
+                                    <div class="col-md-1  padmar0" ng-class="{'has-error' : !addProForm.maxlength.$pristine && addProForm.maxlength.$error.required }">
+                                        <input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" type="number" min="1" max="8388607" required name="maxlength" class="form-control padmar0"  ng-model="danliangMax" ng-show="myToggle=='YES'" >
+                                        <div class="text-right" ng-show="myToggle=='YES'&&!addProForm.maxlength.$pristine&&addProForm.maxlength.$error.required">
+                                            <div class="errorTip">请填写</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 padmar5" ng-class="{'has-error' : !addProForm.normalPositions.$pristine && addPositions=='select' }">
+                                        <select class="form-control" name="normalPositions" ng-model="addPositions"  ng-options="positions.name as positions.displayName for positions in positionsList">
+                                        </select>
+                                        <div class="text-right" ng-show="!addProForm.normalPositions.$pristine&&addPositions=='select'">
+                                            <div class="errorTip">请选择</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 padmar5" ng-class="{'has-error' : !addProForm.normalCommissions.$pristine && addCommissions=='select' }">
+                                        <select class="form-control" name="normalCommissions" ng-model="addCommissions"  ng-options="commissions.name as commissions.displayName for commissions in commissionsList">
+                                        </select>
+                                        <div class="text-right" ng-show="!addProForm.normalCommissions.$pristine&&addCommissions=='select'">
+                                            <div class="errorTip">请选择</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 padmar5 " ng-class="{'has-error' : !addProForm.addCommission.$pristine && addProForm.addCommission.$invalid || addComChange3 }">
+                                        <input type="number" min="0" required name="addCommission"  class="form-control" max="{{addCommissions=='CASH'?'100':''}}" ng-focus="addComChange3=false" ng-model="val"/>
+                                        <span ng-show="addCommissions=='VOLUME'" class="commissionIcon">&yen; </span>
+                                        <span ng-show="addCommissions=='CASH'" class="commissionIcon" >%</span>
+                                        <div class="text-right" ng-show="!addProForm.addCommission.$pristine && addProForm.addCommission.$invalid || addComChange3 ">
+                                            <div class="errorTip">输入有误</div>
+                                        </div>
+                                        <div class="text-right" style="width: 100px" ng-show="commissionListNull && commissionList.length==0" ng-init="commissionListNull=false">
+                                            <div class="errorTip">请添加提成方案</div>
+                                        </div>
+                                    </div>
+                                    <label class="col-md-1 padmar5 control-label" >
+                                        <a class="operate"  ng-click="addCommission(addPositions,addCommissions,val,danliangMin,danliangMax,positionsList,myToggle)">添加</a><span class="icon" style="color: red;">*</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--利率配置 删除-->
+                        <div class="row" ng-repeat="lilv in repaymentList">
+                            <div class="col-xs-6">
+                                <div class="form-group row">
+                                    <div class="col-xs-3 padmar0">
+                                        <label class="control-label"  ng-show="$index==0">利率配置:</label>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <input class="form-control bgw" ng-model="lilv.name" readonly>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <input class="form-control bgw" ng-model="lilv.type.displayName" readonly>
+
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <input class="form-control bgw" ng-model="lilv.paytimeType.displayName  " readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group row">
+                                    <div class="col-xs-3">
+                                        <input type="text" class="form-control bgw" readonly  ng-model="lilv.value" >
+                                    </div>
+                                    <label class="col-xs-2  padmar5 control-label">是否必填:</label>
+                                    <div class="col-md-1 padmar5">
+                                        <label class="radio-inline">
+                                            <input type="radio" ng-model="lilv.isChoice.name"  value="YES" ng-disabled="true" >是
+                                        </label>
+                                    </div>
+                                    <div class="col-md-1 padmar5" style="margin-left: 10px">
+                                        <label class="radio-inline">
+                                            <input type="radio"   ng-model="lilv.isChoice.name"  value="NO" ng-disabled="true" >否
+                                        </label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="control-label">
+                                            <a class="operate" ng-click="removeLilv($index)">删除</a>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--利率配置 添加-->
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group row">
+                                    <div class="col-xs-3 padmar0">
+                                        <label class="control-label" ng-show="repaymentList.length==0">利率配置:</label>
+                                    </div>
+                                    <div class="col-xs-3" id="lilvProjectDiv"  ng-class="{'has-error' : !addProForm.lilv1.$pristine && lilv1==''&& repaymentList.length==0|| lilv1Change }">
+                                        <select  class="form-control bgw" ng-focus="lilv1Change=false"  readonly="readonly" id="lilvProjectInput" name="lilv1" ng-model="lilv1"  ng-change="getLilvType(lilv1)" >
+                                            <option value="">-请选择-</option>
+                                            <option value="{{item}}" ng-repeat="item in projectList">{{item.displayName}}</option>
+                                        </select>
+                                        <div class="text-right" ng-show="!addProForm.lilv1.$pristine && lilv1==''&& repaymentList.length==0|| lilv1Change ">
+                                            <div class="errorTip">请选择</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3" id="lilvTypeDiv" ng-class="{'has-error' : !addProForm.lilv2.$pristine && lilv2==''&& repaymentList.length==0|| lilv2Change }">
+                                        <select  class="form-control bgw" readonly="readonly" ng-focus="lilv2Change=false" id="lilvTypeInput" name="lilv2" ng-model="lilv2"  ng-change="getLilvPaytime(lilv1,lilv2)" ng-disabled="!lilv1" >
+                                            <option value="">-请选择-</option>
+                                            <option value="{{item}}" ng-repeat="item in typeList">{{item.displayName}}</option>
+                                        </select>
+                                        <div class="text-right" ng-show="!addProForm.lilv2.$pristine && lilv2==''&& repaymentList.length==0|| lilv2Change">
+                                            <div class="errorTip">请选择</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3" id="lilvPaytimeDiv" ng-class="{'has-error' : !addProForm.lilv3.$pristine && lilv3==''&& repaymentList.length==0|| lilv3Change||lilv3Changes  }" >
+                                        <select  class="form-control bgw"  id="lilvPaytimeInput" ng-focus="lilv3Change=false" name="lilv3" ng-model="lilv3" ng-disabled="!lilv1||!lilv2"  ng-change="getLilvPayval(lilv1,lilv2,lilv3)" >
+                                        <option value="">-请选择-</option>
+                                        <option value="{{item}}" ng-repeat="item in paytimeList">{{item.displayName}}</option>
+                                        </select>
+                                        <div class="text-right" ng-show="!addProForm.lilv3.$pristine && lilv3==''&& repaymentList.length==0|| lilv3Change">
+                                            <div class="errorTip">请选择</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group row">
+                                    <div class="col-xs-3" ng-class="{'has-error' : !addProForm.lilv4.$pristine && lilv4==''&& repaymentList.length==0|| lilv4Change }" >
+                                        <select  class="form-control selectInput" name="lilv4" ng-focus="lilv4Change=false" ng-model="lilv4"  ng-disabled="!lilv1||!lilv2||!lilv3"  ng-change="llPayvalFnc(lilv4)" >
+                                        <option value="">-请选择-</option>
+                                        <option value='{{payval}}' ng-repeat="payval in payvalList">{{payval.displayName}}</option>
+                                        </select>
+                                        <div class="text-right" ng-show="!addProForm.lilv4.$pristine && lilv4==''&& repaymentList.length==0|| lilv4Change">
+                                            <div class="errorTip">请选择</div>
+                                        </div>
+                                    </div>
+                                    <label class="col-xs-2  padmar5 control-label">是否必填:</label>
+                                    <div class="col-md-1 padmar5">
+                                        <label class="radio-inline">
+                                            <input style="margin-top: -4px"  type="radio"  ng-model="necessary" disabled  value="YES"  >是
+                                        </label>
+                                    </div>
+                                    <div class="col-md-1 padmar5" style="margin-left: 10px">
+                                        <label class="radio-inline">
+                                            <input style="margin-top: -4px"  type="radio"  ng-model="necessary" disabled value="NO"  >否
+                                        </label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="control-label">
+                                            <a class="operate" ng-click="addLilv(lilv1,lilv2,lilv3,lilv4,necessary)">添加</a>
+                                        </label>
+                                    </div>
+                                    <div class="col-md-1 tip"><span class="icon" >*</span></div>
+                                    <div class="col-md-2 errorTip control-label" style="width: 90px" ng-show="lilvListNull && repaymentList.length==0" ng-init="lilvListNull=false"><span >请添加利率配置</span></div>
+                                    <div class="col-md-2 errorTip control-label" style="width: 90px" ng-init="addLilvError=false" ng-show="addLilvError && repaymentList.length>0" ng-init="editlilvListNull=false">
+                                        <span >利率配置单位请保持一致</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--计息方式-->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group  row">
+                                    <label  class="col-md-3 control-label">计息方式:</label>
+                                    <div class="col-md-8" ng-class="{'has-error' : addProForm.addInterests.$touched &&addInterests=='select'|| addInterestsTips }">
+                                        <select name="addInterests" ng-required="{{addInterests!='select'}}" class="form-control" ng-model="addInterests" ng-focus="addInterestsTips=false" ng-options="interests.name as interests.displayName for interests in interestsList">
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1 tip"><span class="icon" >*</span></div>
+                                </div>
+                            </div>
+                            <div class=" col-md-6  errorTip control-label"  ng-show="addProForm.addInterests.$touched && addInterests=='select'||addInterestsTips"    >
+                                <span>请选择</span>
+                            </div>
+                        </div>
+                        <!--资金渠道-->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group  row">
+                                    <label  class="col-md-3 control-label">资金渠道:</label>
+                                    <div class="col-md-8"  ng-class="{'has-error' : addProForm.addMoneyresources.$touched && addMoneyresources=='select'|| addMoneyresourcesTips}">
+                                        <select name="addMoneyresources"  class="form-control" ng-model="addMoneyresources" ng-focus="addMoneyresourcesTips=false" ng-options="moneyresources.name as moneyresources.displayName for moneyresources in moneyresourcesList">
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1 tip"><span class="icon">*</span></div>
+
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <label class="control-label col-xs-2 errorTip" ng-show="addProForm.addMoneyresources.$touched && addMoneyresources=='select'|| addMoneyresourcesTips"><span>请选择</span></label>
+                                    <label class="col-xs-6  padmar5 control-label" style="text-align: left">
+                                        是否可以切换至爱尚金服放款：
+                                    </label>
+                                    <div class="col-md-1 padmar5">
+                                        <label class="radio-inline">
+                                            <input style="margin-top: -4px"  type="radio" name="isSupportAssend"  ng-model="isSupportAssend"  value="YES" ng-init="isSupportAssend='YES'"  >是
+                                        </label>
+                                    </div>
+                                    <div class="col-md-1 padmar5" style="margin-left: 10px">
+                                        <label class="radio-inline">
+                                            <input style="margin-top: -4px"  type="radio" name="isSupportAssend"   ng-model="isSupportAssend"  value="NO"  >否
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--放款至-->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group  row">
+                                    <label  class="col-md-3 control-label">放款至:</label>
+                                    <div class="col-md-8" ng-class="{'has-error' : addProForm.addLoantypes.$touched && addLoantypes=='select'|| addLoantypesTips }">
+                                        <select name="addLoantypes"  class="form-control" ng-model="addLoantypes" ng-focus="addLoantypesTips=false" ng-options="loantypes.name as loantypes.displayName for loantypes in loantypesList" >
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1 tip"><span class="icon" >*</span></div>
+                                </div>
+
+                            </div>
+
+                                <div class=" control-label col-md-6  errorTip"  ng-show="addProForm.addLoantypes.$touched && addLoantypes=='select'|| addLoantypesTips " >
+                                    <span>请选择</span>
+                                </div>
+
+                        </div>
+                        <!--业务范围-->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group  row" style="margin-bottom: 0" >
+                                    <label  class="col-md-3 control-label">业务范围:</label>
+                                    <div class="col-md-8  "  id="treeviewDiv" ng-class="{'has-error' : stroeTreeChange}">
+                                        <input type="text" id="addTreeviewName" placeholder="下拉选择业务范围(默认全部)" name="storeTree" class="form-control" ng-focus="stroeTreeChange=false"  onclick="$('#addTreeview').toggle()" ng-init="stroeTreeChange=false" >
+                                        <span class="glyphicon glyphicon-plus" style="top: -20px;right: -215px" ></span>
+                                        <div id="addTreeview" style="display:none;position: relative;border: 1px solid #ddd;top: -13px;"></div>
+                                    </div>
+                                    <div class="col-md-1 tip"><span class="icon" >*</span></div>
+                                </div>
+                            </div>
+                            <div class=" control-label col-md-6  errorTip"  ng-show="stroeTreeChange" >
+                                <span>请选择业务范围</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-green"   ng-click="addProduct()">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 编辑模态弹出窗-->
+    <div class="modal  fade" id="edit-data" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width:880px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="clearEditForm()">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">编辑产品</h4>
+                </div>
+                <div class="modal-body" style="height:650px;overflow-y:auto;">
+                    <form class="form-horizontal  addDateForm" role="form"  name="editProForm"  novalidate style="padding: 0 40px;">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group row">
+                                    <label class="col-xs-3 control-label">产品分类:</label>
+                                    <div class="col-xs-2 control-label">
+                                        <span ng-bind="lookres.productInfoDTO.level1Name?lookres.productInfoDTO.level1Name:'全部'"></span>
+                                    </div>
+                                    <div class="col-xs-2 control-label">
+                                        <span ng-bind="lookres.productInfoDTO.level2Name?lookres.productInfoDTO.level2Name:'全部'"></span>
+                                    </div>
+                                    <div class="col-xs-2 control-label">
+                                        <span ng-bind="lookres.productInfoDTO.level3Name?lookres.productInfoDTO.level3Name:'全部'"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row add_tit" >产品基本信息</div>
+                        <!--产品名称-->
+                        <div class="row p_t_line">
+                            <div class="col-md-6">
+                                <div class="form-group  row">
+                                    <label  class="col-md-3 control-label">产品名称:</label>
+                                    <div class="col-md-8" ng-class="{'has-error' : editProForm.proName.$error.required && editProForm.proName.$touched || editProNameChange }">
+                                        <input type="text" maxlength="30" class="form-control"  ng-model="lookres.productInfoDTO.productName"  name="proName" required  ng-focus="editProNameChange=false" placeholder="必填（30字以内）">
+                                    </div>
+                                    <div class="col-md-1 tip"><span class="icon">*</span></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6  errorTip"  ng-show="editProForm.proName.$error.required && editProForm.proName.$touched || editProNameChange"   >
+                                <span>&nbsp;&nbsp;产品名称不能为空</span>
+                            </div>
+                        </div>
+                        <!--支持期数-->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row form-group" ng-repeat="support in editSupportList">
+                                    <div class="col-md-3 padmar0">
+                                        <label class="control-label" ng-show="$index==0">支持期数:</label>
+                                    </div>
+                                    <div class="col-md-3 txtMid">
+                                        <select class="form-control bgw" style="-moz-appearance: none;-webkit-appearance:none;appearance:none;padding-left: 5px" disabled ng-model="support.paytimeUnit" ng-options="qishu.name as qishu.displayName for qishu in qishuList"></select>
+                                    </div>
+                                    <div class="col-md-3 txtMid">
+                                        <label class="control-label txtMid">{{support.payTime}}</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="control-label operate"><a class="operate" ng-click="removeSupport($index)">删除</a></label>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-md-3 padmar0">
+                                        <label  class="control-label" id="edit_zzqs" ng-show="editSupportList.length==0">支持期数:</label>
+                                    </div>
+                                    <div class="col-md-3" ng-class="{'has-error' : !editProForm.addSupprot.$pristine && mySupport=='select' }">
+                                        <select name="addSupprot" ng-disabled="editSupportList.length!=0" class="form-control bgw" ng-model="mySupport"  ng-options="qishu.name as qishu.displayName for qishu in qishuList">
+                                        </select>
+                                        <div class="text-right" ng-show="!editProForm.addSupprot.$pristine&&mySupport=='select'">
+                                            <div class="errorTip">请选择</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3" ng-class="{'has-error' : !editProForm.addSupportVal.$pristine&&(!editSupportVal)}">
+                                        <input onkeyup="this.value=this.value.replace(/\D|^0/g,'')" onafterpaste="this.value=this.value.replace(/\D|^0/g,'')" type="number" min="0" class="form-control" name="addSupportVal" required   placeholder="值"  ng-model="editSupportVal" ng-focus="editSupportValPaichong=false" >
+                                        <div class="text-right" ng-show="!editProForm.addSupportVal.$pristine&&!editSupportVal">
+                                            <div class="errorTip">请填写</div>
+                                        </div>
+                                        <div class=" errorTip control-label" style="width: 100px" ng-show="editSupportValPaichong"  ng-init="editSupportValPaichong=false"  >
+                                            <span>支持期数重复</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="control-label operate" ><a class="operate"  ng-click="addSupportDate(mySupport,editSupportVal)" >添加</a></label>
+                                    </div>
+                                    <div class="col-md-1 tip"><span class="icon">*</span></div>
+
+                                </div>
+                            </div>
+                            <div class="col-xs-6 errorTip control-label" ng-show="editSupportVal1" ng-init="editSupportVal1=false">
+                                <span>请添加支持期数</span>
+                            </div>
+                        </div>
+                        <!--单量区间--普通-->
+                        <div class="row"  ng-show="myToggle=='NO'&& editCommissionList.length>0 ">
+                            <!--普通删除-->
+                            <div class="row padmar0" ng-repeat="child in editCommissionList">
+                                <div class="col-md-5">
+                                    <div class="form-group"  ng-show="$index==0">
+                                        <div class="col-md-3 padmar0">
+                                            <label  class="control-label"  ng-show="$index==0">提成方案：</label>
+                                        </div>
+                                        <div class="col-md-5" style="text-align: right">
+                                            <label class="control-label">是否为阶梯算法:</label>
+                                        </div>
+                                        <div class="col-xs-1 padmar0">
+                                            <label class="radio-inline"  >
+                                                <input style="margin-top: -4px"  type="radio"  value="YES" ng-model="editNormalSelected" ng-value="true" ng-init="editNormalSelected=false" ng-disabled="1">是
+                                            </label>
+                                        </div>
+                                        <div class="col-xs-1 padmar0" style="margin-left: 10px">
+                                            <label class="radio-inline" >
+                                                <input style="margin-top: -4px"  type="radio"  value="NO" ng-model="editNormalSelected" ng-value="false">否
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 padmar0" >
+                                    <div class="form-group">
+                                        <div class="col-md-3 padmar5">
+                                            <select class="form-control bgw" disabled ng-model="child.position"  ng-options="positions.name as positions.displayName for positions in positionsList">
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3 padmar5">
+                                            <select class="form-control bgw" disabled ng-model="child.commissionType"  ng-options="commissions.name as commissions.displayName for commissions in commissionsList">
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3 padmar5">
+                                            <input type="text" class="form-control bgw" disabled  ng-model="child.commission"/>
+                                            <span ng-show="child.commissionType=='VOLUME'" class="commissionIcon" style="left: 100px;">&yen; </span>
+                                            <span ng-show="child.commissionType=='CASH'" class="commissionIcon" style="left: 100px">%</span>
+                                        </div>
+                                        <label class="col-md-1 padmar5 control-label" ><a class="operate"  ng-click="removeCommission($index,editNormalSelected)">删除</a></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--普通添加-->
+                            <div class="row padmar0" >
+                                <div class="col-md-5">
+                                </div>
+                                <div class="col-md-7 padmar0" >
+                                    <div class="form-group has-feedback">
+                                        <div class="col-md-3 padmar5" ng-class="{'has-error' : !editProForm.normalPositions.$pristine && editPositions=='select'&& commissionList.length==0|| editComChange1} ">
+                                            <select ng-focus="editComChange1=false" class="form-control" name="normalPositions" ng-model="editPositions"  ng-options="positions.name as positions.displayName for positions in positionsList">
+                                            </select>
+                                            <div class="text-right" ng-show="!editProForm.normalPositions.$pristine&&editPositions=='select'&& commissionList.length==0 || editComChange1">
+                                                <div class="errorTip">请选择</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 padmar5" ng-class="{'has-error' : !editProForm.normalCommissions.$pristine && editCommissions=='select'&& commissionList.length==0 || editComChange2}">
+                                            <select class="form-control" name="normalCommissions" ng-model="editCommissions" ng-focus="editComChange2=false" ng-options="commissions.name as commissions.displayName for commissions in commissionsList">
+                                            </select>
+                                            <div class="text-right" ng-show="!editProForm.normalCommissions.$pristine&&editCommissions=='select'&& commissionList.length==0 || editComChange2">
+                                                <div class="errorTip">请选择</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 padmar5 " ng-class="{'has-error' : !editProForm.addCommissionNormal.$pristine && editProForm.addCommissionNormal.$invalid || editComChange3}">
+                                            <input type="number" min="0" name="addCommissionNormal"  class="form-control" style="padding-right: 0px" ng-focus="editComChange3=false" max="{{editCommissions=='CASH'?'100':''}}"  ng-model="editNormalVal"/>
+                                            <span ng-show="editCommissions=='VOLUME'" class="commissionIcon" style="left: 100px;">&yen; </span>
+                                            <span ng-show="editCommissions=='CASH'" class="commissionIcon" style="left: 100px">%</span>
+                                            <div class="text-right" ng-show="editProForm.addCommissionNormal.$error.max || editComChange3">
+                                                <div class="errorTip">输入有误</div>
+                                            </div>
+                                        </div>
+                                        <label class="col-md-1 padmar5 control-label" ><a class="operate" ng-click="addCommission(editPositions,editCommissions,editNormalVal)">添加</a></label>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--单量区间--阶梯-->
+                        <div class="row"  ng-show="myToggle=='YES' && editCommissionList.length>0 ">
+                            <!--阶梯删除-->
+                            <div class="row padmar0" ng-repeat="child in editCommissionList">
+                                <div class="col-md-5">
+                                    <div class="form-group" ng-show="$index==0">
+                                        <div class="col-md-3 padmar0">
+                                            <label  class="control-label">提成方案：</label>
+                                        </div>
+                                        <div class="col-md-5" style="text-align: right">
+                                            <label class="control-label">是否为阶梯算法:</label>
+                                        </div>
+                                        <div class="col-xs-1 padmar0">
+                                            <label class="radio-inline">
+                                                <input style="margin-top: -4px"  type="radio"  value="YES" ng-model="editsSepsSelected" ng-value="true" ng-init="editsSepsSelected=true">是
+                                            </label>
+                                        </div>
+                                        <div class="col-xs-1  padmar0" style="margin-left: 10px">
+                                            <label class="radio-inline">
+                                                <input style="margin-top: -4px"  type="radio"   value="NO" ng-model="editsSepsSelected" ng-value="false" ng-disabled="true">否
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 padmar0" >
+                                    <div class="form-group">
+                                        <div class="col-md-2 padmar0">
+                                            <label class="control-label" ng-show="$index%(positionsList.length-1)==0">单量区间：</label>
+                                        </div>
+                                        <div class="col-md-1  padmar0">
+                                            <input type="number"ng-disabled="true" class="form-control padmar0 bgw" ng-model="child.lowerLimit" ng-show="$index%(positionsList.length-1)==0">
+                                        </div>
+                                        <div class="col-md-1 padmar0 txtMid"><span ng-show="$index%(positionsList.length-1)==0">~</span></div>
+                                        <div class="col-md-1  padmar0">
+                                            <input type="number" ng-disabled="true" class="form-control padmar0 bgw"  ng-model="child.upperLimit" ng-show="$index%(positionsList.length-1)==0">
+                                        </div>
+                                        <div class="col-md-2 padmar5">
+                                            <select class="form-control bgw" ng-disabled="true" ng-model="child.position"  ng-options="positions.name as positions.displayName for positions in positionsList">
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2 padmar5">
+                                            <select class="form-control" ng-model="child.commissionType"  ng-options="commissions.name as commissions.displayName for commissions in commissionsList">
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2 padmar5"  ng-class="{'has-error' : !child.commission&&child.commission!=0}">
+                                            <input type="number" min="0" required name="stepsCommission"  class="form-control" max="{{child.commissionType=='CASH'?'100':''}}"  ng-model="child.commission"/>
+                                            <span ng-show="child.commissionType=='VOLUME'" class="commissionIcon">&yen; </span>
+                                            <span ng-show="child.commissionType=='CASH'" class="commissionIcon" >%</span>
+                                            <div class="text-right" ng-show="!child.commission&&child.commission!=0">
+                                                <div class="errorTip">输入有误</div>
+                                            </div>
+                                        </div>
+                                        <label class="col-md-1 padmar5 control-label" ><a class="operate" ng-click="removeCommission($index,editsSepsSelected,positionsList)" ng-show="$index%(positionsList.length-1)==0">删除</a></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--阶梯添加-->
+                            <div class="row padmar0">
+                                <div class="col-md-5">
+                                </div>
+                                <div class="col-md-7 padmar0" >
+                                    <div class="form-group">
+                                        <div class="col-md-2 padmar0">
+                                            <label class="control-label">单量区间：</label>
+                                        </div>
+                                        <div class="col-md-1  padmar0">
+                                            <input  type="number" min="0" name="minlength" class="form-control padmar0 bgw" ng-model="editDanliangMin1" ng-disabled="commissionList.length>0">
+                                            <div class="text-right" ng-show="editDanliangMax&&editDanliangMin1&&editDanliangMin1>=editDanliangMax || editProForm.maxlength1.$error.min ||editProForm.maxlength1.$error.max">
+                                                <div class="errorTip" style="width: 100px">请注意单量区间</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-1 padmar0 txtMid"><span>~</span></div>
+                                        <div class="col-md-1  padmar0" ng-class="{'has-error' : !editProForm.maxlength1.$pristine && editProForm.maxlength1.$error.required }">
+                                            <input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" type="number" min="1" required name="maxlength1" class="form-control padmar0"  ng-model="editDanliangMax" max="8388607">
+                                            <div class="text-right" ng-show="!editProForm.maxlength1.$pristine&&editProForm.maxlength1.$error.required">
+                                                <div class="errorTip">请填写</div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-2 padmar5" ng-class="{'has-error' : !editProForm.normalPositions.$pristine && editPositions=='select'||editComChange1 }">
+                                            <select class="form-control" ng-focus="editComChange1=false" ng-model="editPositions" name="normalPositions" ng-options="positions.name as positions.displayName for positions in positionsList">
+                                            </select>
+                                            <div class="text-right" ng-show="!editProForm.normalPositions.$pristine&&editPositions=='select'||editComChange1">
+                                                <div class="errorTip">请选择</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 padmar5" ng-class="{'has-error' : !editProForm.normalCommissions.$pristine && editCommissions=='select'||editComChange2 }">
+                                            <select class="form-control"ng-focus="editComChange2=false" ng-model="editCommissions"  ng-options="commissions.name as commissions.displayName for commissions in commissionsList">
+                                            </select>
+                                            <div class="text-right" ng-show="!editProForm.normalCommissions.$pristine&&editCommissions=='select'||editComChange2">
+                                                <div class="errorTip">请选择</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 padmar5 " ng-class="{'has-error' : !editProForm.addCommissionStep.$pristine && editProForm.addCommissionStep.$invalid ||editComChange3}">
+                                            <input type="number" ng-focus="editComChange3=false" min="0" name="addCommissionStep"  class="form-control" max="{{editCommissions=='CASH'?'100':''}}"  ng-model="editVal"/>
+                                            <span ng-show="editCommissions=='VOLUME'" class="commissionIcon">&yen; </span>
+                                            <span ng-show="editCommissions=='CASH'" class="commissionIcon" >%</span>
+                                            <div class="text-right" ng-show="editProForm.addCommissionStep.$error.max || editProForm.addCommissionStep.$error.min ||editComChange3">
+                                                <div class="errorTip">输入有误</div>
+                                            </div>
+                                        </div>
+                                        <label class="col-md-1 padmar5 control-label" ><a class="operate"  ng-click="addCommission(editPositions,editCommissions,editVal,editDanliangMin1,editDanliangMax,positionsList,myToggle)">添加</a></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--单量区间--开关-->
+                        <div class="row" ng-show="editCommissionList.length==0" >
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <div class="col-md-3 padmar0">
+                                        <label  class="control-label"  >提成方案：</label>
+                                    </div>
+                                    <div class="col-md-5"  style="text-align: right">
+                                        <label class="control-label">是否为阶梯算法:</label>
+                                    </div>
+                                    <div class="col-xs-1 padmar0">
+                                        <label class="radio-inline"  >
+                                            <input style="margin-top: -4px"  type="radio" name="stepsMode" value="YES"  ng-model="myToggle" ng-init="myToggle='YES'" >是
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-1 padmar0" style="margin-left: 10px">
+                                        <label class="radio-inline" >
+                                            <input style="margin-top: -4px"  type="radio"  name="stepsMode" value="NO"  ng-model="myToggle" >否
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7 padmar0" >
+                                <div class="form-group"  >
+                                    <div class="col-md-2 padmar0">
+                                        <label class="control-label" ng-show="myToggle=='YES'" >单量区间：</label>
+                                    </div>
+                                    <div class="col-md-1  padmar0" ng-class="{'has-error' : !editProForm.minlength.$pristine && editProForm.minlength.$error.required  }">
+                                        <input  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" type="number" min="0" name="minlength"  class="form-control padmar0" ng-show="myToggle=='YES'" required  ng-model="editDanliangMin">
+                                        <div class="text-right" ng-show="myToggle=='YES'&&!editProForm.minlength.$pristine&&editProForm.minlength.$error.required">
+                                            <div class="errorTip">请填写</div>
+                                        </div>
+                                        <div class="text-right"  ng-show="myToggle=='YES'&&editDanliangMin&&editDanliangMax&&editDanliangMin>=editDanliangMax||editProForm.maxlength.$error.min ||editProForm.maxlength.$error.max ">
+                                            <div class="errorTip" style="width: 100px">请注意单量区间</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1 padmar0 txtMid"><span ng-show="myToggle=='YES'" >~</span></div>
+                                    <div class="col-md-1  padmar0" ng-class="{'has-error' : !editProForm.maxlength.$pristine && editProForm.maxlength.$error.required }">
+                                        <input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" type="number" min="1" max="8388607" required name="maxlength" class="form-control padmar0"  ng-model="editDanliangMax" ng-show="myToggle=='YES'" >
+                                        <div class="text-right" ng-show="myToggle=='YES'&&!editProForm.maxlength.$pristine&&editProForm.maxlength.$error.required">
+                                            <div class="errorTip">请填写</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 padmar5" ng-class="{'has-error' : !editProForm.normalPositions.$pristine && editPositions=='select'|| editComChange1}">
+                                        <select class="form-control" name="normalPositions" ng-model="editPositions" ng-focus="editComChange1=false" ng-options="positions.name as positions.displayName for positions in positionsList">
+                                        </select>
+                                        <div class="text-right" ng-show="!editProForm.normalPositions.$pristine&&editPositions=='select'|| editComChange1">
+                                            <div class="errorTip">请选择</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 padmar5" ng-class="{'has-error' : !editProForm.normalCommissions.$pristine && editCommissions=='select'|| editComChange2 }">
+                                        <select class="form-control" name="normalCommissions" ng-model="editCommissions" ng-focus="editComChange2=false" ng-options="commissions.name as commissions.displayName for commissions in commissionsList">
+                                        </select>
+                                        <div class="text-right" ng-show="!editProForm.normalCommissions.$pristine&&editCommissions=='select'|| editComChange2">
+                                            <div class="errorTip">请选择</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 padmar5 " ng-class="{'has-error' : !editProForm.addCommission.$pristine && editProForm.addCommission.$invalid || editComChange3}">
+                                        <input type="number" min="0" required name="addCommission"  class="form-control" max="{{editCommissions=='CASH'?'100':''}}" ng-focus="editComChange3=false" ng-model="editVal"/>
+                                        <span ng-show="editCommissions=='VOLUME'" class="commissionIcon">&yen; </span>
+                                        <span ng-show="editCommissions=='CASH'" class="commissionIcon" >%</span>
+                                        <div class="text-right" ng-show="editProForm.addCommission.$error.max ||editProForm.addCommission.$error.min|| editComChange3">
+                                            <div class="errorTip">输入有误</div>
+                                        </div>
+                                        <div class="text-right" style="width: 100px" ng-show="editCommissionListNull && editCommissionList.length==0" ng-init="editCommissionListNull=false">
+                                            <div class="errorTip">请添加提成方案</div>
+                                        </div>
+                                    </div>
+                                    <label class="col-md-1 padmar5 control-label" >
+                                        <a class="operate"  ng-click="addCommission(editPositions,editCommissions,editVal,editDanliangMin,editDanliangMax,positionsList,myToggle)">添加</a><span class="icon" style="color: red;">*</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--利率配置 删除-->
+                        <div class="row" ng-repeat="lilv in repaymentList">
+                            <div class="col-xs-6">
+                                <div class="form-group row">
+                                    <div class="col-xs-3 padmar0">
+                                        <label class="control-label"  ng-show="$index==0">利率配置:</label>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <input class="form-control bgw" ng-model="lilv.name" readonly>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <input class="form-control bgw" ng-model="lilv.type.displayName" readonly>
+
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <input class="form-control bgw" ng-model="lilv.paytimeType.displayName" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group row">
+                                    <div class="col-xs-3">
+                                        <input type="text" class="form-control bgw" readonly  ng-model="lilv.value" >
+                                    </div>
+                                    <label class="col-xs-2  padmar5 control-label">是否必填:</label>
+                                    <div class="col-md-1 padmar5">
+                                        <label class="radio-inline">
+                                            <input style="margin-top: -4px"  type="radio"  ng-model="lilv.isChoice.name" value="YES"  ng-disabled="true" >是
+                                        </label>
+                                    </div>
+                                    <div class="col-md-1 padmar5" style="margin-left: 10px">
+                                        <label class="radio-inline">
+                                            <input style="margin-top: -4px"  type="radio"  ng-model="lilv.isChoice.name" value="NO"  ng-disabled="true" >否
+                                        </label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="control-label">
+                                            <a class="operate" ng-click="removeLilv($index)">删除</a>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--利率配置 添加-->
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group row">
+                                    <div class="col-xs-3 padmar0">
+                                        <label class="control-label" ng-show="repaymentList.length==0">利率配置:</label>
+                                    </div>
+                                    <div class="col-xs-3" ng-class="{'has-error' : !editProForm.lilv1.$pristine && editLilv1==''&& repaymentList.length==0|| editLilv1Change }" >
+                                        <select  class="form-control selectInput" ng-focus="editLilv1Change=false" name="lilv1" ng-model="editLilv1"  ng-change="getLilvType(editLilv1)" >
+                                            <option value="">-请选择-</option>
+                                            <option value="{{item}}" ng-repeat="item in projectList">{{item.displayName}}</option>
+                                        </select>
+                                        <div class="text-right" ng-show="!editProForm.lilv1.$pristine && editLilv1==''&& repaymentList.length==0|| editLilv1Change ">
+                                            <div class="errorTip">请选择</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3" ng-class="{'has-error' : !editProForm.lilv2.$pristine && editLilv2==''&& repaymentList.length==0|| editLilv2Change }" >
+                                        <select  class="form-control selectInput" ng-focus="editLilv2Change=false"  name="lilv2" ng-model="editLilv2"  ng-change="getLilvPaytime(editLilv1,editLilv2)" ng-disabled="!editLilv1" >
+                                            <option value="">-请选择-</option>
+                                            <option value="{{item}}" ng-repeat="item in typeList">{{item.displayName}}</option>
+                                        </select>
+                                        <div class="text-right" ng-show="!editProForm.lilv2.$pristine && editLilv2==''&& repaymentList.length==0|| editLilv2Change">
+                                            <div class="errorTip">请选择</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3" ng-class="{'has-error' : !editProForm.lilv3.$pristine && editLilv3==''&& repaymentList.length==0|| editLilv3Change||editLilv3Changes }" >
+                                        <select  class="form-control selectInput"  ng-focus="editLilv3Change=false" name="lilv3" ng-model="editLilv3" ng-disabled="!editLilv1||!editLilv2"  ng-change="getLilvPayval(editLilv1,editLilv2,editLilv3)" >
+                                            <option value="">-请选择-</option>
+                                            <option value="{{item}}" ng-repeat="item in paytimeList">{{item.displayName}}</option>
+                                        </select>
+                                        <div class="text-right" ng-show="!editProForm.lilv3.$pristine && editLilv3==''&& repaymentList.length==0|| editLilv3Change">
+                                            <div class="errorTip">请选择</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group row">
+                                    <div class="col-xs-3" ng-class="{'has-error' : !editProForm.lilv4.$pristine && editLilv4==''&& repaymentList.length==0|| editLilv4Change }">
+                                        <select  class="form-control selectInput" ng-focus="editLilv4Change=false" name="lilv4"  ng-model="editLilv4"  ng-disabled="!editLilv1||!editLilv2||!editLilv3"  ng-change="llPayvalFnc(editLilv4)" >
+                                            <option value="">-请选择-</option>
+                                            <option value='{{payval}}' ng-repeat="payval in payvalList">{{payval.displayName}}</option>
+                                        </select>
+                                        <div class="text-right" ng-show="!editProForm.lilv4.$pristine && editLilv4==''&& repaymentList.length==0|| editLilv4Change">
+                                            <div class="errorTip">请选择</div>
+                                        </div>
+
+                                    </div>
+                                    <label class="col-xs-2  padmar5 control-label">是否必填:</label>
+                                    <div class="col-md-1 padmar5">
+                                        <label class="radio-inline">
+                                            <input style="margin-top: -4px"  type="radio" value="YES" ng-model="editNecessary" disabled   >是
+                                        </label>
+                                    </div>
+                                    <div class="col-md-1 padmar5" style="margin-left: 10px">
+                                        <label class="radio-inline">
+                                            <input style="margin-top: -4px"  type="radio" value="NO"  ng-model="editNecessary" disabled   >否
+                                        </label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="control-label">
+                                            <a class="operate" ng-click="addLilv(editLilv1,editLilv2,editLilv3,editLilv4,editNecessary)">添加</a>
+                                        </label>
+                                    </div>
+                                    <div class="col-md-1 tip"><span class="icon" >*</span></div>
+                                    <div class="col-md-2 errorTip control-label" style="width: 90px" ng-show="editlilvListNull && repaymentList.length==0" ng-init="editlilvListNull=false">
+                                        <span >请添加利率配置</span>
+                                    </div>
+                                    <div class="col-md-2 errorTip control-label" style="width: 90px" ng-init="addLilvError=false" ng-show="addLilvError && repaymentList.length>0" ng-init="editlilvListNull=false">
+                                        <span >利率配置单位请保持一致</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--计息方式-->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group  row">
+                                    <label  class="col-md-3 control-label">计息方式:</label>
+                                    <div class="col-md-8" ng-class="{'has-error' : editProForm.editInterests.$touched &&lookres.productInfoDTO.interestType.name=='select'|| editInterestsTips }">
+                                        <select name="editInterests" required class="form-control" ng-model="lookres.productInfoDTO.interestType.name" ng-focus="editInterestsTips=false"  ng-options="interests.name as interests.displayName for interests in interestsList">
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1 tip"><span class="icon" >*</span></div>
+                                </div>
+                            </div>
+                            <div class=" col-md-6  errorTip control-label"  ng-show="editProForm.editInterests.$touched && lookres.productInfoDTO.interestType.name=='select' || editInterestsTips "    >
+                                <span>请选择</span>
+                            </div>
+                        </div>
+                        <!--资金渠道-->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group  row">
+                                    <label  class="col-md-3 control-label">资金渠道:</label>
+                                    <div class="col-md-8"  ng-class="{'has-error' : editProForm.editMoneyresources.$touched && lookres.productInfoDTO.moneyResource.name=='select'|| editMoneyresourcesTips}">
+                                        <select name="editMoneyresources" class="form-control" ng-model="lookres.productInfoDTO.moneyResource.name" ng-focus="editMoneyresourcesTips=false" ng-options="moneyresources.name as moneyresources.displayName for moneyresources in moneyresourcesList">
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1 tip"><span class="icon">*</span></div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <label class="control-label col-xs-2 errorTip" ng-show="editProForm.editMoneyresources.$touched && lookres.productInfoDTO.moneyResource.name=='select' || editMoneyresourcesTips"><span>请选择</span></label>
+                                    <label class="col-xs-6  padmar5 control-label" style="text-align: left">
+                                        是否可以切换至爱尚金服放款：
+                                    </label>
+                                    <div class="col-md-1 padmar5">
+                                        <label class="radio-inline">
+                                            <input style="margin-top: -4px"  type="radio" name="isSupportAssend"  ng-model="lookres.productInfoDTO.isSupportAssend.name"  value="YES" ng-init="isSupportAssend='YES'"  >是
+                                        </label>
+                                    </div>
+                                    <div class="col-md-1 padmar5" style="margin-left: 10px">
+                                        <label class="radio-inline">
+                                            <input style="margin-top: -4px"  type="radio" name="isSupportAssend"   ng-model="lookres.productInfoDTO.isSupportAssend.name"  value="NO"  >否
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--放款至-->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group  row">
+                                    <label  class="col-md-3 control-label">放款至:</label>
+                                    <div class="col-md-8"  ng-class="{'has-error' : editProForm.editLoantypes.$touched && lookres.productInfoDTO.loanType.name=='select'|| editLoantypesTips }">
+                                        <select name="editLoantypes"  class="form-control" ng-model="lookres.productInfoDTO.loanType.name" ng-focus="editLoantypesTips=false"  ng-options="loantypes.name as loantypes.displayName for loantypes in loantypesList" >
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1 tip"><span class="icon" >*</span></div>
+                                </div>
+                            </div>
+                            <div class=" control-label col-md-6  errorTip"  ng-show="editProForm.editLoantypes.$touched && lookres.productInfoDTO.loanType.name=='select'|| editLoantypesTips" >
+                                <span>请选择</span>
+                            </div>
+                        </div>
+
+                        <!--业务范围-->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group  row" id="editTreeviewDiv">
+                                    <label  class="col-md-3 control-label">业务范围:</label>
+                                    <div class="col-md-8 " ng-class="{'has-error' : editStroeTreeChange}">
+                                        <input placeholder="下拉编辑业务范围" ng-focus="editStroeTreeChange=false" type="text" id="editTreeviewName" name="depName" class="form-control"  onclick="$('#editTreeview').toggle()" >
+                                        <span class="glyphicon glyphicon-plus" style="top: -20px;right: -215px" ></span>
+                                        <div style="display:none;position: relative;border: 1px solid #ddd;top: -13px;" id="editTreeview"></div>
+                                    </div>
+                                    <div class="col-md-1 tip"><span class="icon" >*</span></div>
+                                </div>
+                            </div>
+                            <div class=" control-label col-md-6  errorTip"  ng-show="editStroeTreeChange" >
+                                <span>请选择业务范围</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-green"      ng-click="editProduct()">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 审核模态弹出窗-->
+    <div class="modal  fade" id="audit-data" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width:880px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">审核产品</h4>
+                </div>
+                <div class="modal-body modalssthyhf" style="height:650px;overflow-y:auto;">
+                    <div class="row padmar0">
+                        <div class="col-xs-12 padmar0">
+                            <div class="form-group row padmar0">
+                                <label class="col-xs-1 fontst padmar0" style="margin-left: 15px;">产品分类:</label>
+                                <div class="col-xs-2 fontcor ">
+                                    <span ng-bind="lookres.productInfoDTO.level1Name?lookres.productInfoDTO.level1Name:viewAll"></span>
+                                </div>
+                                <div class="col-xs-2 padmar0 fontcor">
+                                    <span ng-bind="lookres.productInfoDTO.level2Name?lookres.productInfoDTO.level2Name:viewAll"></span>
+                                </div>
+                                <div class="col-xs-2 padmar0 fontcor">
+                                    <span ng-bind="lookres.productInfoDTO.level3Name?lookres.productInfoDTO.level3Name:viewAll"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row add_tit padmar0">产品基本信息</div>
+                    <!--产品名称-->
+                    <div class="row p_t_line padmar0 bianjuli">
+                        <div class="col-md-12 padmar0">
+                            <div class="form-group  row padmar0">
+                                <label class="col-md-1  fontst padmar0" style="margin-left: 15px;">产品名称:</label>
+                                <div class="col-md-8">
+                                    <span class="fontcor">{{lookres.productInfoDTO.productName}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--支持期数-->
+                    <div class="row padmar0 bianjuli">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-1 padmar0" style="margin-left: 15px;">
+                                    <label class=" fontst">支持期数:</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <div ng-repeat="item in supportList" class="xiabianju">
+                                        <span class="fontcor">{{item.paytimeUnit.displayName+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+item.payTime}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--单量区间-->
+                    <div class="row padmar0 bianjuli">
+                        <div class="row padmar0">
+                            <div class="col-md-1 padmar0" style="margin-left: 15px;">
+                                <label class=" fontst">提成方案：</label>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="col-xs-11 padmar0">
+                                    <label class=" fontcor">是否为阶梯算法:</label>
+                                </div>
+                                <div class="col-xs-1 padmar0">
+                                    <span class="fontcor">{{lookres.productInfoDTO.isEnabledLadder.displayName}}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-8 padmar0">
+                                <div ng-repeat="item in commissionList" class="col-md-12 xiabianju">
+                                    <div class="col-md-2 padmar0 " ng-show="yincang">
+                                        <label class="fontcor" ng-show="$index%(positionsList.length-1)==0">单量区间：</label>
+                                    </div>
+                                    <div class="col-md-1  padmar0 text-center" ng-show="yincang">
+                                        <!--<input type="number" class="form-control padmar0" ng-model="child.danliangMin">-->
+                                        <span class="fontcor" ng-show="$index%(positionsList.length-1)==0">{{item.lowerLimit}}</span>
+                                    </div>
+                                    <div class="col-md-1 padmar0 " style="text-align: center" ng-show="yincang"><span
+                                            ng-show="$index%(positionsList.length-1)==0">~</span>
+                                    </div>
+                                    <div class="col-md-2  padmar0 " ng-show="yincang">
+                                        <!--<input type="number" class="form-control padmar0"  ng-model="child.danliangMax">-->
+                                        <span class="fontcor" ng-show="$index%(positionsList.length-1)==0">{{item.upperLimit}}</span>
+                                    </div>
+                                    <div class="col-md-2 padmar5">
+                                        <span class="fontcor">{{item.position.displayName}}</span>
+                                    </div>
+                                    <div class="col-md-2 padmar5">
+                                        <span class="fontcor">{{item.commissionType.displayName}}</span>
+                                    </div>
+                                    <div class="col-md-2 padmar5">
+
+                                        <span class="fontcor">{{item.commission}}</span>
+                                        <span ng-show="item.commissionType.name=='VOLUME'" class="fontcor" >元 </span>
+                                        <span ng-show="item.commissionType.name=='CASH'" class="fontcor" >%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--利率配置-->
+                    <div class="row padmar0 bianjuli">
+                        <div class="col-xs-1 padmar0" style="margin-left: 15px;">
+                            <label class="padmar0 fontst" >利率配置:</label>
+                        </div>
+                        <div class="col-xs-10 padmar0">
+                            <div ng-repeat="items in repaymentList" class="col-xs-12 xiabianju">
+                                <div class="col-xs-2 padmar0" style="padding-right: 0;">
+                                    <span class="fontcor">{{items.name}}</span>
+                                </div>
+                                <div class="col-xs-1 padmar0">
+                                    <span class="fontcor">{{items.type.displayName}}</span>
+                                </div>
+                                <div class="col-xs-1 padmar0">
+                                    <span class="fontcor">{{items.paytimeType.displayName}}</span>
+                                </div>
+                                <div class="col-xs-2 padmar0">
+                                    <span class="fontcor">{{items.value}}</span>
+                                </div>
+                                <div class="col-xs-4">
+                                    <label class="col-xs-5  padmar5 fontcor">
+                                        是否必填：
+                                    </label>
+                                    <div class="col-md-1 padmar5">
+                                        <span class="fontcor">{{items.isChoice.displayName}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--计息方式-->
+                    <div class="row padmar0 bianjuli">
+                        <div class="col-md-12 padmar0">
+                            <label class="col-md-1 padmar0 fontst" style="margin-left: 15px;">计息方式:</label>
+                            <div class="col-md-8">
+                                <span class="fontcor">{{lookres.productInfoDTO.interestType.displayName}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!--资金渠道-->
+                    <div class="row padmar0 bianjuli">
+                        <div class="col-md-6 padmar0">
+                            <label class="col-md-2 padmar0 fontst" style="margin-left: 15px;">资金渠道:</label>
+                            <div class="col-md-8">
+                                <span class="fontcor">{{lookres.productInfoDTO.moneyResource.displayName}}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <label class="col-xs-6  padmar5 control-label fontcor" style="text-align: left;font-weight: bold" >
+                                    是否可以切换至爱尚金服放款：
+                                </label>
+                                <div class="col-md-1 control-label fontcor padmar0" ng-show="lookres.productInfoDTO.isSupportAssend.name=='YES'">是</div>
+                                <div class="col-md-1 control-label fontcor padmar0" ng-show="lookres.productInfoDTO.isSupportAssend.name=='NO'">否</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--放款至-->
+                    <div class="row padmar0 bianjuli">
+                        <div class="col-md-12 padmar0">
+                            <label class="col-md-1 padmar0 fontst" style="margin-left: 15px;">放款至:</label>
+                            <div class="col-md-8">
+                                <span class="fontcor">{{lookres.productInfoDTO.loanType.displayName}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!--业务范围-->
+                    <div class="row padmar0 bianjuli">
+                        <div class="col-md-12 padmar0">
+                            <label  class="col-md-1 padmar0 fontst" style="margin-left: 15px;">业务范围:</label>
+                            <div class="col-md-4  "  id="aduitTreeviewDiv">
+                                <input type="text" style="height: 24px" id="aduitTreeviewName" placeholder="下拉查看业务范围" name="storeTree" class="form-control" onclick="$('#auditTreeview').toggle()" >
+                                <span class="glyphicon glyphicon-plus" style="top: -19px;right: -230px;color: #999999" ></span>
+                                <div id="auditTreeview" style="display:none;position: relative;border: 1px solid #ddd;top: -13px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="height:202px;">
+                    <form id="audit_btn" class="auditDateForm" name="auditDateForm"  novalidate >
+                        <div class="row">
+                            <div class="col-md-12 add_tit text-left" style="margin-left:-16px;margin-top: 0px">审核结果：</div>
+                            <div class="form-group has-feedback"  ng-class="{'has-error': auditDateForm.opinion.$invalid && (auditDateForm.opinion.$dirty || opinionChange)}">
+                                <div class="col-md-12" style="padding-right:0;">
+                                    <input type="text" class="form-control" name="opinion" required  ng-focus="opinionChange=false"   value="{{requestDTO.stateRemarks}}" placeholder="请输入原因" ng-model="shenremarks"/>
+                                    <span ng-show="auditDateForm.opinion.$error.required && (auditDateForm.opinion.$dirty || opinionChange)" class="glyphicon glyphicon-remove form-control-feedback help-block" style="top: -3px" ></span>
+                                </div>
+                            </div>
+                            <div class="col-md-12 text-left errorTip" ng-show="auditDateForm.opinion.$error.required && (auditDateForm.opinion.$dirty || opinionChange)">
+                                <span class="">请输入原因</span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row btn-list">
+                            <button type="button" class="btn btn-danger"  id="refuse-btn" ng-click="prtn(3)"  >拒绝</button>
+                            <button type="button" class="btn btn-warning"  id="turndown-btn" ng-click="prtn(4)"   >驳回</button>
+                            <button type="button" class="btn btn-success"  id="pass-btn" ng-click="prtn(1)">通过</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 禁用模态弹出窗-->
+    <div class="modal fade" id="forbidden-data" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" >
+        <div class="modal-dialog" style="width:880px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">禁用产品(禁用后该产品将不可使用)</h4>
+                </div>
+                <div class="modal-body">
+                    <form  class="form-horizontal forbDataForm" name="forbDataForm"  role="form"   novalidate  style="padding:0 40px;" >
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group" style="margin-bottom: 5px">
+                                    <label  class="col-md-1 control-label"  style="text-align:left;">禁用原因:</label>
+                                    <div class="col-md-5 has-feedback" ng-class="{'has-error': forbDataForm.forbCause.$invalid && (forbDataForm.forbCause.$dirty || jinyinsChange)}">
+                                        <select class="form-control"  name="forbCause" ng-required="true" ng-model="jinyins" ng-focus="jinyinsChange=false">
+                                            <option value="">-请选择-</option>
+                                            <option value="{{item.dataCode}}" ng-repeat="item in unabledsJ">{{item.dataName}}</option>
+                                        </select>
+                                        <span ng-show="forbDataForm.forbCause.$invalid && (forbDataForm.forbCause.$dirty || jinyinsChange)" class="glyphicon glyphicon-remove form-control-feedback help-block" style="top: -10px;right: 10px" ></span>
+                                    </div>
+                                    <div class="col-md-1 tip"><span class="icon">*</span></div>
+                                </div>
+                                <div class="col-md-offset-1  col-md-11  errorTip"  style="padding-left: 0px">
+                                    <span ng-show="forbDataForm.forbCause.$invalid && (forbDataForm.forbCause.$dirty || jinyinsChange)">请选择禁用原因</span>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label  class="col-md-1 control-label"  style="text-align:left;">禁用说明:</label>
+                                    <div class="col-md-11">
+                                        <textarea class="form-control" rows="4"  name="forbiddenExplain" ng-model="jinshuo"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-green"    ng-click="jinsure()">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 查看模态弹出窗-->
+    <div class="modal  fade" id="view-data" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width:880px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="clearAddForm()">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">查看产品</h4>
+                </div>
+                <div class="modal-body modalssthyhf" style="height:650px;overflow-y:auto;">
+                    <div class="row padmar0">
+                        <div class="col-xs-12 padmar0">
+                            <div class="form-group row padmar0">
+                                <label class="col-xs-1 fontst padmar0" style="margin-left: 15px;">产品分类:</label>
+                                <div class="col-xs-2 fontcor ">
+                                    <span ng-bind="lookres.productInfoDTO.level1Name?lookres.productInfoDTO.level1Name:viewAll"></span>
+                                </div>
+                                <div class="col-xs-2 padmar0 fontcor">
+                                    <span ng-bind="lookres.productInfoDTO.level2Name?lookres.productInfoDTO.level2Name:viewAll"></span>
+                                </div>
+                                <div class="col-xs-2 padmar0 fontcor">
+                                    <span ng-bind="lookres.productInfoDTO.level3Name?lookres.productInfoDTO.level3Name:viewAll"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row add_tit padmar0">产品基本信息</div>
+                    <!--产品名称-->
+                    <div class="row p_t_line padmar0 bianjuli">
+                        <div class="col-md-12 padmar0">
+                            <div class="form-group  row padmar0">
+                                <label class="col-md-1  fontst padmar0" style="margin-left: 15px;">产品名称:</label>
+                                <div class="col-md-8">
+                                    <span class="fontcor">{{lookres.productInfoDTO.productName}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--支持期数-->
+                    <div class="row padmar0 bianjuli">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-1 padmar0" style="margin-left: 15px;">
+                                    <label class=" fontst">支持期数:</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <div ng-repeat="item in supportList" class="xiabianju">
+                                        <span class="fontcor">{{item.paytimeUnit.displayName+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+item.payTime}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--单量区间-->
+                    <div class="row padmar0 bianjuli" id="normal">
+                        <div class="row padmar0">
+                            <div class="col-md-1 padmar0" style="margin-left: 15px;">
+                                <label class=" fontst" id="normal_tcfa">提成方案：</label>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="col-xs-11 padmar0">
+                                    <label class=" fontcor">是否为阶梯算法:</label>
+                                </div>
+                                <div class="col-xs-1 padmar0">
+                                    <span class="fontcor">{{lookres.productInfoDTO.isEnabledLadder.displayName}}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-8 padmar0">
+                                <div ng-repeat="item in commissionList" class="col-md-12 xiabianju">
+                                    <div class="col-md-2 padmar0 " ng-show="yincang">
+                                        <label class="fontcor" ng-show="$index%(positionsList.length-1)==0">单量区间：</label>
+                                    </div>
+                                    <div class="col-md-1  padmar0 text-center" ng-show="yincang">
+                                        <!--<input type="number" class="form-control padmar0" ng-model="child.danliangMin">-->
+                                        <span class="fontcor " ng-show="$index%(positionsList.length-1)==0">{{item.lowerLimit}}</span>
+                                    </div>
+                                    <div class="col-md-1 padmar0 " style="text-align: center" ng-show="yincang"><span
+                                            ng-show="$index%(positionsList.length-1)==0">~</span>
+                                    </div>
+                                    <div class="col-md-2  padmar0 " ng-show="yincang">
+                                        <!--<input type="number" class="form-control padmar0"  ng-model="child.danliangMax">-->
+                                        <span class="fontcor" ng-show="$index%(positionsList.length-1)==0">{{item.upperLimit}}</span>
+                                    </div>
+                                    <div class="col-md-2 padmar5">
+                                        <span class="fontcor">{{item.position.displayName}}</span>
+                                    </div>
+                                    <div class="col-md-2 padmar5">
+                                        <span class="fontcor">{{item.commissionType.displayName}}</span>
+                                    </div>
+                                    <div class="col-md-2 padmar5">
+                                        <span class="fontcor">{{item.commission}}</span>
+                                        <span ng-show="item.commissionType.name=='VOLUME'" class="fontcor" >元 </span>
+                                        <span ng-show="item.commissionType.name=='CASH'" class="fontcor" >%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--利率配置 删除-->
+                    <div class="row padmar0 bianjuli">
+                        <div class="col-xs-1 padmar0" style="margin-left: 15px;">
+                            <label class=" fontst" >利率配置:</label>
+                        </div>
+                        <div class="col-xs-10 padmar0">
+                            <div ng-repeat="items in repaymentList" class="col-xs-12 xiabianju ">
+                                <div class="col-xs-2 padmar0" style="padding-right: 0;">
+                                    <span class="fontcor">{{items.name}}</span>
+                                </div>
+                                <div class="col-xs-1 padmar0">
+                                    <span class="fontcor">{{items.type.displayName}}</span>
+                                </div>
+                                <div class="col-xs-1 padmar0">
+                                    <span class="fontcor">{{items.paytimeType.displayName}}</span>
+                                </div>
+                                <div class="col-xs-2 padmar0">
+                                    <span class="fontcor">{{items.value}}</span>
+                                </div>
+                                <div class="col-xs-4">
+                                    <label class="col-xs-5  padmar5 fontcor">
+                                        是否必填：
+                                    </label>
+                                    <div class="col-md-1 padmar5">
+                                        <span class="fontcor">{{items.isChoice.displayName}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--计息方式-->
+                    <div class="row padmar0 bianjuli">
+                        <div class="col-md-12 padmar0">
+                            <label class="col-md-1 padmar0 fontst" style="margin-left: 15px;">计息方式:</label>
+                            <div class="col-md-8">
+                                <span class="fontcor">{{lookres.productInfoDTO.interestType.displayName}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!--资金渠道-->
+                    <div class="row padmar0 bianjuli">
+                        <div class="col-md-6 padmar0">
+                            <label class="col-md-2 padmar0 fontst" style="margin-left: 15px;">资金渠道:</label>
+                            <div class="col-md-8">
+                                <span class="fontcor">{{lookres.productInfoDTO.moneyResource.displayName}}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <label class="col-xs-6  padmar5 control-label fontcor" style="text-align: left;font-weight: bold" >
+                                    是否可以切换至爱尚金服放款：
+                                </label>
+                                <div class="col-md-1 control-label fontcor padmar0" ng-show="lookres.productInfoDTO.isSupportAssend.name=='YES'">是</div>
+                                <div class="col-md-1 control-label fontcor padmar0" ng-show="lookres.productInfoDTO.isSupportAssend.name=='NO'">否</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--放款至-->
+                    <div class="row padmar0 bianjuli">
+                        <div class="col-md-12 padmar0">
+                            <label class="col-md-1 padmar0 fontst" style="margin-left: 15px;">放款至:</label>
+                            <div class="col-md-8">
+                                <span class="fontcor">{{lookres.productInfoDTO.loanType.displayName}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!--业务范围-->
+                    <div class="row padmar0 bianjuli">
+                        <div class="col-md-12 padmar0">
+                            <label class="col-md-1 padmar0 fontst" style="margin-left: 15px;">业务范围:</label>
+                            <div class="col-md-4 ">
+                                <input type="text" id="depName"placeholder="下拉查看业务范围" name="storeTree" class="form-control" onclick="$('#viewTreeview').toggle()" >
+                                <span class="glyphicon glyphicon-plus" style="top: -19px;right: -230px;color: #999999" ></span>
+                                <div id="viewTreeview"  style="display:none;position: relative;border: 1px solid #ddd;top: -13px;height: auto"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 启用模态弹出窗-->
+    <div class="modal fade" id="enable-data" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" >
+        <div class="modal-dialog" style="width:880px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" >
+                        &times;
+                    </button>
+                    <h4 class="modal-title">启用产品(启用后该产品将可使用)</h4>
+                </div>
+                <div class="modal-body">
+                    <form  class="form-horizontal forbDataForm" name="enabDataForm"  role="form"   novalidate  style="padding:0 40px;" >
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group" style="margin-bottom: 5px">
+                                    <label  class="col-md-1 control-label"  style="text-align:left;">启用原因:</label>
+                                    <div class="col-md-5 has-feedback"  ng-class="{'has-error': enabDataForm.cause.$invalid && (auditDateForm.cause.$dirty || qiyinsChange)}">
+                                        <select class="form-control"  name="cause" ng-required="true"  ng-model="qiyins" ng-focus="qiyinsChange=false">
+                                            <option value="">-请选择-</option>
+                                            <option value="{{item.dataCode}}" ng-repeat="item in enableList">{{item.dataName}}</option>
+                                        </select>
+                                        <span ng-show="enabDataForm.cause.$invalid && (auditDateForm.cause.$dirty || qiyinsChange)" class="glyphicon glyphicon-remove form-control-feedback help-block" style="top: -10px;right: 10px" ></span>
+
+                                    </div>
+                                    <div class="col-md-1 tip"><span class="icon">*</span></div>
+                                </div>
+                                <div class="col-md-offset-1  col-md-11 errorTip" style="padding-left: 0px" >
+                                    <span ng-show="enabDataForm.cause.$invalid && (auditDateForm.cause.$dirty || qiyinsChange)">请选择启用原因</span>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label  class="col-md-1 control-label"  style="text-align:left;">启用说明:</label>
+                                    <div class="col-md-11">
+                                        <textarea class="form-control" rows="4"  name="forbiddenExplain" ng-model="qishuo"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-green"   ng-click="qisure()">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 删除模态弹出窗-->
+    <div class="modal fade" id="delete-data" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width:880px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close guanbisss" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">删除产品</h4>
+                </div>
+                <div class="modal-body">
+                    <form  class="form-horizontal forbDataForm" name="delDataForm"  role="form"   novalidate  style="padding:0 40px;" >
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group" style="margin-bottom: 5px">
+                                    <label  class="col-md-1 control-label"  style="text-align:left;">删除原因:</label>
+                                    <div class="col-md-5 has-feedback" ng-class="{'has-error': delDataForm.cause.$invalid && (delDataForm.cause.$dirty || delyinsChange)}">
+                                        <select class="form-control"  name="cause"  ng-model="delyins"  ng-required="true" ng-focus="delyinsChange=false" >
+                                            <option value="">-请选择-</option>
+                                            <option value="{{item.dataCode}}" ng-repeat="item in delList">{{item.dataName}}</option>
+                                        </select>
+                                        <span ng-show="delDataForm.cause.$invalid && (delDataForm.cause.$dirty || delyinsChange)" class="glyphicon glyphicon-remove form-control-feedback help-block" style="top: -10px;right: 10px" ></span>
+                                    </div>
+                                    <div class="col-md-1 tip"><span class="icon">*</span></div>
+                                </div>
+                                <div class="col-md-offset-1  col-md-11 help-blocks errorTip" style="padding-left: 0" >
+                                    <span ng-show="delDataForm.cause.$invalid && (delDataForm.cause.$dirty || delyinsChange)">请选择删除原因</span>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label  class="col-md-1 control-label"  style="text-align:left;">删除说明:</label>
+                                    <div class="col-md-11">
+                                        <textarea class="form-control" rows="4"  name="forbiddenExplain" ng-model="delshuo"  required  ng-focus></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-green"   ng-click="delsure()">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

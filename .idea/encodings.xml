@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/product-manager-adapter" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/product-manager-assembly" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/product-manager-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/product-manager-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/product-manager-dal" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/product-manager-facade" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/product-manager-swagger" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/product-manager-web" charset="UTF-8" />
+  </component>
+</project>

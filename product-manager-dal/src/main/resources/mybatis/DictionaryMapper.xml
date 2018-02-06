@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aishang.product.dao.DictionaryDao">
+    <resultMap id="BaseResultMap" type="com.aishang.product.model.Dictionary">
+        <id column="id" property="id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="data_code" property="dataCode" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="data_type" property="dataType" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="data_name" property="dataName" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="data_value" property="dataValue" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="data_remark" property="dataRemark" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="create_user_id" property="createUserId" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="deleted" property="deleted" javaType="java.lang.Byte" jdbcType="TINYINT"/>
+        <result column="insert_time" property="insertTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        <result column="bizid" property="bizid" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, data_code, data_type, data_name, data_value, data_remark, create_user_id, deleted, 
+    insert_time, update_time, bizid
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dictionary
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dictionary
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.aishang.product.model.Dictionary">
+    insert into dictionary (id, data_code, data_type,
+      data_name, data_value, data_remark,
+      create_user_id, deleted, insert_time,
+      update_time, bizid)
+    values (#{id,jdbcType=INTEGER}, #{dataCode,jdbcType=VARCHAR}, #{dataType,jdbcType=VARCHAR},
+      #{dataName,jdbcType=VARCHAR}, #{dataValue,jdbcType=VARCHAR}, #{dataRemark,jdbcType=VARCHAR},
+      #{createUserId,jdbcType=VARCHAR}, #{deleted,jdbcType=TINYINT}, #{insertTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP}, #{bizid,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.aishang.product.model.Dictionary">
+        insert into dictionary
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="dataCode != null">
+                data_code,
+            </if>
+            <if test="dataType != null">
+                data_type,
+            </if>
+            <if test="dataName != null">
+                data_name,
+            </if>
+            <if test="dataValue != null">
+                data_value,
+            </if>
+            <if test="dataRemark != null">
+                data_remark,
+            </if>
+            <if test="createUserId != null">
+                create_user_id,
+            </if>
+            <if test="deleted != null">
+                deleted,
+            </if>
+            <if test="insertTime != null">
+                insert_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="bizid != null">
+                bizid,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="dataCode != null">
+                #{dataCode,jdbcType=VARCHAR},
+            </if>
+            <if test="dataType != null">
+                #{dataType,jdbcType=VARCHAR},
+            </if>
+            <if test="dataName != null">
+                #{dataName,jdbcType=VARCHAR},
+            </if>
+            <if test="dataValue != null">
+                #{dataValue,jdbcType=VARCHAR},
+            </if>
+            <if test="dataRemark != null">
+                #{dataRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="createUserId != null">
+                #{createUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="deleted != null">
+                #{deleted,jdbcType=TINYINT},
+            </if>
+            <if test="insertTime != null">
+                #{insertTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="bizid != null">
+                #{bizid,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.aishang.product.model.Dictionary">
+        update dictionary
+        <set>
+            <if test="dataCode != null">
+                data_code = #{dataCode,jdbcType=VARCHAR},
+            </if>
+            <if test="dataType != null">
+                data_type = #{dataType,jdbcType=VARCHAR},
+            </if>
+            <if test="dataName != null">
+                data_name = #{dataName,jdbcType=VARCHAR},
+            </if>
+            <if test="dataValue != null">
+                data_value = #{dataValue,jdbcType=VARCHAR},
+            </if>
+            <if test="dataRemark != null">
+                data_remark = #{dataRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="createUserId != null">
+                create_user_id = #{createUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="deleted != null">
+                deleted = #{deleted,jdbcType=TINYINT},
+            </if>
+            <if test="insertTime != null">
+                insert_time = #{insertTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="bizid != null">
+                bizid = #{bizid,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.aishang.product.model.Dictionary">
+    update dictionary
+    set data_code = #{dataCode,jdbcType=VARCHAR},
+      data_type = #{dataType,jdbcType=VARCHAR},
+      data_name = #{dataName,jdbcType=VARCHAR},
+      data_value = #{dataValue,jdbcType=VARCHAR},
+      data_remark = #{dataRemark,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      deleted = #{deleted,jdbcType=TINYINT},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      bizid = #{bizid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <select id="getProductTypes" resultMap="BaseResultMap">
+
+        select dictionary.data_code,dictionary.data_name,dictionary.data_value
+        from dictionary
+        where dictionary.deleted = 0 and dictionary.data_type = #{dictionarytype}
+        <if test="typecode == null or typecode == ''">
+            and dictionary.data_code in(select data_code from dictionary_relation where parent_code is null or
+            parent_code = '')
+        </if>
+        <if test="typecode != null and typecode != ''">
+            and dictionary.data_code in (select data_code from dictionary_relation where parent_code = #{typecode})
+        </if>
+
+    </select>
+
+    <select id="getEnableTypeList" resultMap="BaseResultMap">
+        select data_code,data_name,data_value
+        from dictionary
+        where data_type ='PROD_ENABLE_REASON'
+    </select>
+
+    <select id="getUnableTypeList" resultMap="BaseResultMap">
+        select data_code,data_name,data_value
+        from dictionary
+        where data_type ='PROD_DISABLE_REASON'
+    </select>
+
+    <select id="getDeletedTypeList" resultMap="BaseResultMap">
+        select data_code,data_name,data_value
+        from dictionary
+        where data_type ='PROD_DEL_REASON'
+    </select>
+
+    <select id="getDataName" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select data_code,data_name,data_value
+        from dictionary
+        where  data_value = #{dataValue,jdbcType=VARCHAR} and data_type ='PRODUCT_DELREASON'
+    </select>
+
+    <!--获取字典数量-->
+    <select id="getDataCountByCode" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select count(*) from dictionary
+        where data_code = #{dataCode}
+    </select>
+    <!--修改-->
+    <update id="update" parameterType="com.aishang.product.model.Dictionary">
+        update dictionary
+        <set>
+            <if test="dataCode != null">
+                data_code = #{dataCode,jdbcType=VARCHAR},
+            </if>
+            <if test="dataType != null">
+                data_type = #{dataType,jdbcType=VARCHAR},
+            </if>
+            <if test="dataName != null">
+                data_name = #{dataName,jdbcType=VARCHAR},
+            </if>
+            <if test="dataValue != null">
+                data_value = #{dataValue,jdbcType=VARCHAR},
+            </if>
+            <if test="dataRemark != null">
+                data_remark = #{dataRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="createUserId != null">
+                create_user_id = #{createUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="deleted != null">
+                deleted = #{deleted,jdbcType=BIT},
+            </if>
+            <if test="insertTime != null">
+                insert_time = #{insertTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="bizid != null">
+                bizid = #{bizid,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where data_code = #{dataCode,jdbcType=INTEGER}
+    </update>
+    <!--添加-->
+    <insert id="add" parameterType="com.aishang.product.model.Dictionary">
+        insert into dictionary
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="dataCode != null">
+                data_code,
+            </if>
+            <if test="dataType != null">
+                data_type,
+            </if>
+            <if test="dataName != null">
+                data_name,
+            </if>
+            <if test="dataValue != null">
+                data_value,
+            </if>
+            <if test="dataRemark != null">
+                data_remark,
+            </if>
+            <if test="createUserId != null">
+                create_user_id,
+            </if>
+            <if test="deleted != null">
+                deleted,
+            </if>
+            <if test="insertTime != null">
+                insert_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="bizid != null">
+                bizid,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="dataCode != null">
+                #{dataCode,jdbcType=VARCHAR},
+            </if>
+            <if test="dataType != null">
+                #{dataType,jdbcType=VARCHAR},
+            </if>
+            <if test="dataName != null">
+                #{dataName,jdbcType=VARCHAR},
+            </if>
+            <if test="dataValue != null">
+                #{dataValue,jdbcType=VARCHAR},
+            </if>
+            <if test="dataRemark != null">
+                #{dataRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="createUserId != null">
+                #{createUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="deleted != null">
+                #{deleted,jdbcType=BIT},
+            </if>
+            <if test="insertTime != null">
+                #{insertTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="bizid != null">
+                #{bizid,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <!--查询字典代号-->
+    <select id="findDataValue" parameterType="java.lang.String" resultType="java.lang.String">
+        select data_value from dictionary
+        where data_code = #{dataCode}
+    </select>
+</mapper>

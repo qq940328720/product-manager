@@ -1,0 +1,231 @@
+.quxian
+{
+    height: 30px;
+    /*padding: 6px 12px;*/
+    font-size: 12px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.padmar0{
+    padding: 0;
+    margin: 0;
+}
+
+/*人事管理*/
+.boxss
+{
+    font-size: 12px;
+}
+.boxss span
+{
+    line-height: 33px;
+}
+.title
+{
+    background: #fff;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.juli
+{
+    padding-top: 10px;
+    padding-bottom: 20px;
+    box-sizing: border-box;
+}
+.juli11
+{
+    padding: 0 5px;
+    box-sizing: border-box;
+}
+.disabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.6;
+}
+.bgcolor337AB7{
+    background-color: #337AB7 !important;
+    color: #fff !important;
+}
+@media (min-width: 630px) {
+    .shu {
+        height: 400px !important;
+    }
+}
+@media (min-width: 992px) {
+    .shu {
+        height: 600px !important;
+    }
+}
+@media (min-width: 1200px) {
+    .shu {
+        height: 756px !important;
+    }
+}
+@media (min-width: 1600px) {
+    .shu {
+        height: 756px !important;
+    }
+}
+.btn-green {
+    background-color: #50AD92;
+    color: #ffffff;
+    border-color: #50AD92;
+}
+.btn-green:hover, .btn-green:active, .btn-green.hover {
+    background-color: #5AC3A5;
+    color: #ffffff;
+}
+.btn-green:visited, .btn-green:focus{
+    background-color: #489E85;
+    color: #ffffff;
+}
+.caozuo a{
+    color: #50AD92;
+    margin-right: 5px;
+    cursor: pointer;
+}
+.caozuo a:hover{
+    color: #5AC3A5;
+}
+.opppst span
+{
+    float: left;
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+
+
+
+/*alert*/
+.mask{
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 99;
+    background-color: rgba(10,10,10,.3);
+}
+.dialog{
+    width: 382px;
+    height: 250px;
+    position: fixed;
+    top: 35%;
+    left: 40%;
+    background-color: #fff;
+    z-index:999;
+    display: none;
+}
+.dialog-title{
+    height: 48px;
+    line-height: 48px;
+    background-color: #f5f5f5;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-indent: 1.5em;
+    border-bottom: 1px solid #efefef;
+    cursor: move;
+}
+#alertlog .dialog-title{
+    height: 30px;
+    line-height: 30px;
+    background-color: #f5f5f5;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-indent: 1.5em;
+    border-bottom: 1px solid #efefef;
+    cursor: initial;
+}
+.dialog-title-close{
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    right: 10px;
+    top: 5px;
+    background: url("../img/close_def.png");
+}
+.dialog-title-close:hover{
+    cursor: pointer;
+    background: url("../img/close_hov.png");
+}
+.dialog-content{
+    padding: 5px;
+}
+.dialog-hint{
+    width: 100%;
+    height: 40%;
+    text-indent: 5rem;
+    font-size: 1rem;
+    line-height: 4rem;
+}
+
+
+
+
+
+/*
+弹窗style*/
+body{font-size:12px;}
+#fileupload{position:relative;display:block;width:100px;height:32px;line-height:32px;overflow: hidden;color:#72BDA7;text-decoration: none;}
+#cont{position:absolute;top:0;left:0;width:100px;height:32px;opacity: 0;z-index: 1000;}
+.file{height:32px;line-height:32px;overflow: hidden;color:#72BDA7;}
+.tip .icon{display:block;height:34px;line-height:34px;color:red;font-size:14px;}
+.modal-header{height:80px;padding:28px 35px;}
+#add_btn{background:#50AD92;color:#fff;width:60px;height:30px;margin-right:36px;}
+.modal-footer{height:80px;padding-top:25px;}
+#audit_btn{padding:0px 40px;}
+.btn-list{margin-right:10px;}
+#forbidden-data  #forbidden-btn{background:#50AD92;color:#fff;width:60px;height:32px;}
+#activate-data #activate-btn{background:#50AD92;color:#fff;width:60px;height:32px;}
+#refuse-btn{background:#CF5D45;color:#fff;width:60px;height:32px;}
+#turndown-btn{background:#EA9F34;color:#fff;width:60px;height:32px;}
+#pass-btn{background:#50AD92;color:#fff;width:60px;height:32px;}
+#restrpassword-btn{background:#EA9F34;color:#fff;width:80px;height:32px;}
+
+/*
+新增*/
+.tip{padding:0;margin:0;position: relative;}
+.tip .icon{display:block;height:34px;line-height:34px;color:red;font-size:14px;position:absolute;left:-8px;}
+.modal-header{height:80px;padding:28px 35px;}
+#add_btn{background:#50AD92;color:#fff;width:60px;height:30px;margin-right:36px;}
+.modal-footer{height:80px;padding-top:25px;}
+#audit_btn{padding:0px 40px;}
+.btn-list{margin-right:10px;}
+#refuse-btn{background:#CF5D45;color:#fff;width:60px;height:32px;}
+#turndown-btn{background:#EA9F34;color:#fff;width:60px;height:32px;}
+#pass-btn{background:#50AD92;color:#fff;width:60px;height:32px;}
+#restrpassword-btn{background:#EA9F34;color:#fff;width:80px;height:32px;}
+.form-group label{text-align: left!important;}
+.modal-body{padding-top: 30px}
+.p_t_line{border-top: 1px solid #ddd;padding-top: 24px}
+.padmar0{padding: 0;margin: 0;}
+.padmar5{padding: 0px 0px 0px  5px!important;margin: 0;}
+input[type="number"]{text-align: center;padding: 0;margin: 0;}
+.selectInput{background: #fff!important;padding-left: 3px}
+.selectDiv{background:#fff;width:80%;display:none;position: absolute;top:24px;left:10px;z-index:100;border:1px solid #7b9dd4;overflow-y:auto;margin-left: 5px}
+.selectDiv ul li{padding-right: 20px;padding-left: 3px}
+.selectDiv ul li:hover{background-color: #1E90FF;color: white}
+.bgw{background-color: white!important;}
+.operate{color: #50AD92}
+.control-label,.form-horizontal .checkbox, .form-horizontal .checkbox-inline, .form-horizontal .radio, .form-horizontal .radio-inline{padding-top: 3px!important;}
+.txtMid{text-align: center}
+.form-control{padding: 6px 6px}
+div.form-error{color:red;padding-top: 5px!important;}
+
+/*新增*/
+#add-data  input{height:24px;}
+#add-data  select{height:24px;padding:0;left:0;}
+#add-data .control-label{padding-left:0;padding-right:0;font-size:12px;font-weight: 100;}
+#add-data .add_tit{margin-top:24px;margin-bottom:24px;margin-left:-15px;height:20px;line-height:20px; border-left:5px solid #367FA9;padding:0px 5px;font-size:14px;font-weight:600;}
+#add-data input[type="radio"]{margin-top:-2px;}
+#add-data .form-error{margin-top: -20px;padding:2px 5px;}

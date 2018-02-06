@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aishang.product.dao.ProductStoreLimitConfigDao">
+    <resultMap id="BaseResultMap" type="com.aishang.product.model.ProductStoreLimitConfig">
+        <id column="id" property="id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="product_code" property="productCode" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="store_code" property="storeCode" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="enabled" property="enabled" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="deleted" property="deleted" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="insert_time" property="insertTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, product_code, store_code, enabled, deleted, insert_time, update_time
+  </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from product_store_limit_config
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from product_store_limit_config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.aishang.product.model.ProductStoreLimitConfig">
+    insert into product_store_limit_config (id, product_code, store_code, 
+      enabled, deleted, insert_time, 
+      update_time)
+    values (#{id,jdbcType=INTEGER}, #{productCode,jdbcType=VARCHAR}, #{storeCode,jdbcType=VARCHAR}, 
+      #{enabled,jdbcType=INTEGER}, #{deleted,jdbcType=INTEGER}, #{insertTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.aishang.product.model.ProductStoreLimitConfig">
+        insert into product_store_limit_config
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="productCode != null">
+                product_code,
+            </if>
+            <if test="storeCode != null">
+                store_code,
+            </if>
+            <if test="enabled != null">
+                enabled,
+            </if>
+            <if test="deleted != null">
+                deleted,
+            </if>
+            <if test="insertTime != null">
+                insert_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="productCode != null">
+                #{productCode,jdbcType=VARCHAR},
+            </if>
+            <if test="storeCode != null">
+                #{storeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="enabled != null">
+                #{enabled,jdbcType=INTEGER},
+            </if>
+            <if test="deleted != null">
+                #{deleted,jdbcType=INTEGER},
+            </if>
+            <if test="insertTime != null">
+                #{insertTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.aishang.product.model.ProductStoreLimitConfig">
+        update product_store_limit_config
+        <set>
+            <if test="productCode != null">
+                product_code = #{productCode,jdbcType=VARCHAR},
+            </if>
+            <if test="storeCode != null">
+                store_code = #{storeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="enabled != null">
+                enabled = #{enabled,jdbcType=INTEGER},
+            </if>
+            <if test="deleted != null">
+                deleted = #{deleted,jdbcType=INTEGER},
+            </if>
+            <if test="insertTime != null">
+                insert_time = #{insertTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.aishang.product.model.ProductStoreLimitConfig">
+    update product_store_limit_config
+    set product_code = #{productCode,jdbcType=VARCHAR},
+      store_code = #{storeCode,jdbcType=VARCHAR},
+      enabled = #{enabled,jdbcType=INTEGER},
+      deleted = #{deleted,jdbcType=INTEGER},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <!--根据产品编码获取经营范围-->
+    <select id="getStoreConfigsByProductCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select *
+        from product_store_limit_config
+        where product_code = #{productcode}
+    </select>
+
+    <!--根据产品编码删除经营范围-->
+    <delete id="deleteStoreConfigsByProductCode" parameterType="java.lang.String">
+        delete from product_store_limit_config
+        where product_code = #{productcode} AND id > 0
+    </delete>
+
+    <!--添加产品经营范围-->
+    <insert id="addStoreConfigs" parameterType="java.util.List">
+        insert into product_store_limit_config
+        (product_code, store_code, enabled, deleted)
+        values
+        <foreach collection="adds" item="supportPaytime" index="index" separator=",">
+            (
+            #{supportPaytime.productCode},
+            #{supportPaytime.storeCode},
+            #{supportPaytime.enabled},
+            #{supportPaytime.deleted}
+            )
+        </foreach>
+    </insert>
+
+    <!--根据产品类型查询经营范围-->
+    <select id="getStoreConfigsByProductType" resultMap="BaseResultMap">
+        select * from product_store_limit_config
+        where product_code in
+        (
+          select product_code from product
+          where level_1_code= #{type1} and level_2_code = #{type2} and level_3_code = #{type3}
+        )
+    </select>
+
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="product-manager-adapter" />
+        <module name="product-manager-assembly" />
+        <module name="product-manager-client" />
+        <module name="product-manager-common" />
+        <module name="product-manager-dal" />
+        <module name="product-manager-facade" />
+        <module name="product-manager-swagger" />
+        <module name="product-manager-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="product-manager" target="1.7" />
+      <module name="product-manager-adapter" target="1.7" />
+      <module name="product-manager-assembly" target="1.7" />
+      <module name="product-manager-client" target="1.7" />
+      <module name="product-manager-common" target="1.7" />
+      <module name="product-manager-dal" target="1.7" />
+      <module name="product-manager-facade" target="1.7" />
+      <module name="product-manager-swagger" target="1.7" />
+      <module name="product-manager-web" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

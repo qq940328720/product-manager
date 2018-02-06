@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+    <logger name="org.spring" level="WARN"/>
+    <logger name="org.springframework" level="WARN"/>
+    <logger name="org.jboss.resteasy" level="WARN"/>
+    <logger name="org.apache.zookeeper" level="WARN"/>
+    <logger name="com.alibaba.dubbo" level="WARN"/>
+    <logger name="springfox.documentation" level="WARN"/>
+    <logger name="org.apache.ibatis" level="WARN"/>
+    <logger name="org.mybatis" level="WARN"/>
+    <logger name="org.hibernate" level="WARN"/>
+    <logger name="ma.glasnost" level="WARN"/>
+</included>

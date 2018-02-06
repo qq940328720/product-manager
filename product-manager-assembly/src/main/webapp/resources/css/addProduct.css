@@ -1,0 +1,40 @@
+input[type="number"]{text-align: center;padding: 0;margin: 0;-webkit-appearance: none;}
+.selectInput{background: #fff!important;padding-left: 3px}
+.selectDiv{background:#fff;width:80%;display:none;position: absolute;top:24px;left:10px;z-index:100;border:1px solid #7b9dd4;overflow-y:auto;margin-left: 5px}
+.selectDiv ul li{padding-right: 20px;padding-left: 3px}
+.selectDiv ul li:hover{background-color: #1E90FF;color: white}
+.bgw{background-color: white!important;}
+.operate{color: #50AD92;cursor: pointer}
+a.operate:visited{color: #5AC3A5 !important;cursor: pointer}
+.control-label,.form-horizontal .checkbox, .form-horizontal .checkbox-inline, .form-horizontal .radio, .form-horizontal .radio-inline{padding-top: 3px!important;text-align: left!important;}
+.txtMid{text-align: center}
+.form-control{padding: 6px 6px;border-radius: 4px}
+div.form-error{color:red;padding-top: 5px!important;}
+.redBorder{border:1px solid red}
+.errorTip{color: #a94442!important}
+.help-blocks
+{
+    color: #A94442 !important;
+}
+#edit-data input::-webkit-outer-spin-button,#add-data input::-webkit-outer-spin-button,
+#edit-data input::-webkit-inner-spin-button,#add-data input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+.highLight{background-color: #f4f4f4}
+/*新增*/
+#add-data  input{height:24px;}
+#add-data  select{height:24px;padding:0;left:0;}
+#add-data .control-label{padding-left:0;padding-right:0;font-size:12px;font-weight: 100;}
+#add-data .add_tit{margin-top:24px;margin-bottom:24px;margin-left:-15px;height:20px;line-height:20px; border-left:5px solid #367FA9;padding:0px 5px;font-size:14px;font-weight:600;}
+#add-data input[type="radio"]{margin-top:-2px;}
+#add-data .form-error{margin-top: -20px;padding:2px 5px;}
+.commissionIcon{position: absolute;left: 65px;top: 6px;color: #555;font-weight: bold;font-size: 14px}
+
+
+ /*编辑*/
+#edit-data  input{height:24px;}
+#edit-data  select{height:24px;padding:0;left:0;}
+#edit-data .control-label{padding-left:0;padding-right:0;font-size:12px;font-weight: 100;}
+#edit-data .add_tit{margin-top:24px;margin-bottom:24px;margin-left:-15px;height:20px;line-height:20px; border-left:5px solid #367FA9;padding:0px 5px;font-size:14px;font-weight:600;}
+#edit-data input[type="radio"]{margin-top:-2px;}
+#edit-data .form-error{margin-top: -20px;padding:2px 5px;}

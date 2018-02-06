@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aishang.product.dao.ProductDao">
+    <resultMap id="BaseResultMap" type="com.aishang.product.model.ProductVo">
+        <id column="id" property="id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="product_code" property="productCode" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="product_name" property="productName" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="level_1_code" property="level1Code" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="level_2_code" property="level2Code" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="level_3_code" property="level3Code" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="money_resource" property="moneyResource" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="state" property="state" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="interest_type" property="interestType" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="is_support_ASsend" property="isSupportAssend" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="is_enabled_ladder" property="isEnabledLadder" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="loan_type" property="loanType" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="total_rate" property="totalRate" javaType="java.math.BigDecimal" jdbcType="DECIMAL"/>
+        <result column="enabled" property="enabled" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="deleted" property="deleted" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="insert_time" property="insertTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        <result column="bizid" property="bizid" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="supportpaytime" property="supportPayTime" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="producttype" property="productType" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="level1name" property="level1Name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="level2name" property="level2Name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="level3name" property="level3Name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, product_code, product_name, level_1_code, level_2_code, level_3_code, money_resource, level1name, level2name, level3name
+    state, interest_type, is_support_ASsend, is_enabled_ladder, loan_type, total_rate, enabled, deleted, insert_time, update_time,
+    bizid, supportpaytime, producttype
+  </sql>
+
+    <select id="selectProductByBizid" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT
+        id, product_code, product_name, level_1_code, level_2_code, level_3_code, money_resource,
+        state, interest_type, is_support_ASsend, is_enabled_ladder, loan_type,
+        (select dictionary.data_name from dictionary where
+        product.level_1_code = dictionary.data_code and dictionary.data_type = 'PRODUCT_TYPE') as level1name,
+        (select dictionary.data_name from dictionary where
+        product.level_2_code = dictionary.data_code and dictionary.data_type = 'PRODUCT_TYPE') as level2name,
+        (select dictionary.data_name from dictionary where
+        product.level_3_code = dictionary.data_code and dictionary.data_type = 'PRODUCT_TYPE') as level3name
+        FROM product where bizid = #{bizid,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByBizid" resultType="java.lang.Integer" parameterType="java.lang.String">
+        SELECT IFNULL(count(*),0) FROM product where bizid = #{bizid,jdbcType=VARCHAR}
+    </select>
+
+    <update id="updateProductState" parameterType="com.aishang.product.model.Product">
+        update product
+        set
+        state = #{state,jdbcType=INTEGER}
+        where bizid = #{bizid,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateProductEnabled" parameterType="com.aishang.product.model.Product">
+        update product
+        set
+        deleted = 1
+        where bizid = #{bizid,jdbcType=VARCHAR}
+    </update>
+
+    <!--<insert id="insert" parameterType="com.aishang.product.model.Product">-->
+    <!--insert into product (product_code, product_name,-->
+    <!--level_1_code, level_2_code, level_3_code,-->
+    <!--money_resource, state, interest_type,-->
+    <!--is_support_ASsend, is_enabled_ladder, loan_type,-->
+    <!--enabled, deleted, bizid-->
+    <!--)-->
+    <!--values (#{productCode,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR},-->
+    <!--#{level1Code,jdbcType=VARCHAR}, #{level2Code,jdbcType=VARCHAR}, #{level3Code,jdbcType=VARCHAR},-->
+    <!--#{moneyResource,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, #{interestType,jdbcType=INTEGER},-->
+    <!--#{isSupportAssend,jdbcType=INTEGER},#{isEnabledLadder,jdbcType=INTEGER}, #{loanType,jdbcType=INTEGER},-->
+    <!--#{enabled,jdbcType=INTEGER}, #{deleted,jdbcType=INTEGER}, #{bizid,jdbcType=VARCHAR}-->
+    <!--)-->
+    <!--</insert>-->
+
+    <select id="getProductsByCondition" resultMap="BaseResultMap">
+        select product.id,product.product_code,
+        concat(if(product.level_1_code is null,'全部',(select dictionary.data_name from dictionary where
+        product.level_1_code = dictionary.data_code and dictionary.data_type = 'PRODUCT_TYPE')),
+        if(product.level_2_code is null,'-全部', concat('-',(select dictionary.data_name from dictionary where
+        product.level_2_code = dictionary.data_code and dictionary.data_type = 'PRODUCT_TYPE'))),
+        if(product.level_3_code is null,'-全部', concat('-', (select dictionary.data_name from dictionary where
+        product.level_3_code = dictionary.data_code and dictionary.data_type = 'PRODUCT_TYPE')))) as producttype,
+        product.product_name,
+        group_concat(product_support_paytime.pay_time ORDER BY product_support_paytime.pay_time) supportpaytime,
+        product.money_resource,product.interest_type,product.state,product.bizid
+        from product
+        left join product_support_paytime
+        on product.product_code = product_support_paytime.product_code
+        where product.deleted = 0
+        <if test="type1!=null and type1 != ''">AND (level_1_code = #{type1} OR level_1_code is null)</if>
+        <if test="type2!=null and type2 != ''">AND (level_2_code = #{type2} OR level_2_code is null)</if>
+        <if test="type3!=null and type3 != ''">AND (level_3_code = #{type3} OR level_3_code is null)</if>
+        <if test="state!=null">AND state = #{state}</if>
+        <if test="name!=null and name != ''">AND product_name like '%${name}%'</if>
+        group by
+        product.id,product.product_code,product.product_name,producttype,product.product_name,product.money_resource,product.interest_type,product.state,product.bizid
+        order by product.id DESC
+        <if test="offset!=null and rowscount != null">limit #{offset},#{rowscount}</if>
+    </select>
+
+    <select id="getProductsCountByCondition" resultType="java.lang.Integer">
+        select count(DISTINCT product.id)
+        from product
+        where 1=1 and product.deleted = 0
+        <if test="type1!=null and type1 != ''">AND (level_1_code = #{type1} OR level_1_code is null)</if>
+        <if test="type2!=null and type2 != ''">AND (level_2_code = #{type2} OR level_2_code is null)</if>
+        <if test="type3!=null and type3 != ''">AND (level_3_code = #{type3} OR level_3_code is null)</if>
+        <if test="state!=null">AND state = #{state}</if>
+        <if test="name!=null and name != ''">AND product_name like '%${name}%'</if>
+    </select>
+
+    <update id="updateProduct" parameterType="com.aishang.product.model.Product">
+        update product
+        <set>
+            <if test="productName != null">
+                product_name = #{productName,jdbcType=VARCHAR},
+            </if>
+            level_1_code = #{level1Code,jdbcType=VARCHAR},
+            level_2_code = #{level2Code,jdbcType=VARCHAR},
+            level_3_code = #{level3Code,jdbcType=VARCHAR},
+            <if test="moneyResource != null">
+                money_resource = #{moneyResource,jdbcType=INTEGER},
+            </if>
+            <if test="state != null">
+                state = #{state,jdbcType=INTEGER},
+            </if>
+            <if test="interestType != null">
+                interest_type = #{interestType,jdbcType=INTEGER},
+            </if>
+            <if test="isSupportAssend != null">
+                is_support_ASsend = #{isSupportAssend,jdbcType=INTEGER},
+            </if>
+            <if test="isEnabledLadder != null">
+                is_enabled_ladder = #{isEnabledLadder,jdbcType=INTEGER},
+            </if>
+            <if test="loanType != null">
+                loan_type = #{loanType,jdbcType=INTEGER},
+            </if>
+            <if test="totalRate != null">
+                total_rate = #{totalRate,jdbcType=DECIMAL},
+            </if>
+            <if test="enabled != null">
+                enabled = #{enabled,jdbcType=INTEGER},
+            </if>
+            <if test="deleted != null">
+                deleted = #{deleted,jdbcType=INTEGER},
+            </if>
+        </set>
+        where bizid = #{bizid,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectProductByTypeAndName" resultMap="BaseResultMap">
+        SELECT * FROM product
+        where deleted = 0
+        <if test="type1!=null and type1 != ''">AND level_1_code = #{type1}</if>
+        <if test="type2!=null and type2 != ''">AND level_2_code = #{type2}</if>
+        <if test="type3!=null and type3 != ''">AND level_3_code = #{type3}</if>
+        <if test="name!=null and name != ''">AND product_name = #{name}</if>
+    </select>
+
+    <select id="getMaxCode" resultType="java.lang.String">
+        select product_code from product
+        where id = (select max(id) from product)
+    </select>
+
+    <insert id="insert" parameterType="com.aishang.product.model.Product">
+        insert into product
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="productCode != null">
+                product_code,
+            </if>
+            <if test="productName != null">
+                product_name,
+            </if>
+            <if test="level1Code != null and level1Code != ''">
+                level_1_code,
+            </if>
+            <if test="level2Code != null and level2Code != ''">
+                level_2_code,
+            </if>
+            <if test="level3Code != null and level3Code != ''">
+                level_3_code,
+            </if>
+            <if test="moneyResource != null">
+                money_resource,
+            </if>
+            <if test="state != null">
+                state,
+            </if>
+            <if test="interestType != null">
+                interest_type,
+            </if>
+            <if test="isSupportAssend != null">
+                is_support_ASsend,
+            </if>
+            <if test="isEnabledLadder != null">
+                is_enabled_ladder,
+            </if>
+            <if test="loanType != null">
+                loan_type,
+            </if>
+            <if test="totalRate != null">
+                total_rate,
+            </if>
+            <if test="enabled != null">
+                enabled,
+            </if>
+            <if test="deleted != null">
+                deleted,
+            </if>
+            <if test="bizid != null">
+                bizid,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="productCode != null">
+                #{productCode,jdbcType=VARCHAR},
+            </if>
+            <if test="productName != null">
+                #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="level1Code != null and level1Code != ''">
+                #{level1Code,jdbcType=VARCHAR},
+            </if>
+            <if test="level2Code != null and level2Code != ''">
+                #{level2Code,jdbcType=VARCHAR},
+            </if>
+            <if test="level3Code != null and level3Code != ''">
+                #{level3Code,jdbcType=VARCHAR},
+            </if>
+            <if test="moneyResource != null">
+                #{moneyResource,jdbcType=INTEGER},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=INTEGER},
+            </if>
+            <if test="interestType != null">
+                #{interestType,jdbcType=INTEGER},
+            </if>
+            <if test="isSupportAssend != null">
+                #{isSupportAssend,jdbcType=INTEGER},
+            </if>
+            <if test="isEnabledLadder != null">
+                #{isEnabledLadder,jdbcType=INTEGER},
+            </if>
+            <if test="loanType != null">
+                #{loanType,jdbcType=INTEGER},
+            </if>
+            <if test="totalRate != null">
+                #{totalRate,jdbcType=DECIMAL},
+            </if>
+            <if test="enabled != null">
+                #{enabled,jdbcType=INTEGER},
+            </if>
+            <if test="deleted != null">
+                #{deleted,jdbcType=INTEGER},
+            </if>
+            <if test="bizid != null">
+                #{bizid,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <!--通过分类获取产品信息含期数(App)-->
+    <select id="getProductsByType" resultMap="BaseResultMap">
+        select * from product
+        where 1 = 1
+        <if test="type1!=null and type1 != ''">AND (level_1_code = #{type1} OR level_1_code is null)</if>
+        <if test="type2!=null and type2 != ''">AND (level_2_code = #{type2} OR level_2_code is null)</if>
+        <if test="type3!=null and type3 != ''">AND (level_3_code = #{type3} OR level_3_code is null)</if>
+        <if test="condition == 1">AND state = 1</if>
+        order by product.id DESC
+    </select>
+
+    <!--通过产品编码获取产品信息含期数(App)-->
+    <select id="getProductByProductCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select * from product
+        where product_code = #{productCode}
+    </select>
+</mapper>

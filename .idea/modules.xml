@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/product-manager.iml" filepath="$PROJECT_DIR$/product-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/product-manager-adapter/product-manager-adapter.iml" filepath="$PROJECT_DIR$/product-manager-adapter/product-manager-adapter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/product-manager-assembly/product-manager-assembly.iml" filepath="$PROJECT_DIR$/product-manager-assembly/product-manager-assembly.iml" />
+      <module fileurl="file://$PROJECT_DIR$/product-manager-client/product-manager-client.iml" filepath="$PROJECT_DIR$/product-manager-client/product-manager-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/product-manager-common/product-manager-common.iml" filepath="$PROJECT_DIR$/product-manager-common/product-manager-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/product-manager-dal/product-manager-dal.iml" filepath="$PROJECT_DIR$/product-manager-dal/product-manager-dal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/product-manager-facade/product-manager-facade.iml" filepath="$PROJECT_DIR$/product-manager-facade/product-manager-facade.iml" />
+      <module fileurl="file://$PROJECT_DIR$/product-manager-swagger/product-manager-swagger.iml" filepath="$PROJECT_DIR$/product-manager-swagger/product-manager-swagger.iml" />
+      <module fileurl="file://$PROJECT_DIR$/product-manager-web/product-manager-web.iml" filepath="$PROJECT_DIR$/product-manager-web/product-manager-web.iml" />
+    </modules>
+  </component>
+</project>
