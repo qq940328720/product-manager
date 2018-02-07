@@ -60,7 +60,7 @@ public enum ProductDictionaryEnum implements BaseEnum<ProductDictionaryEnum, Int
         return valueMap;
     }
 
-    @Override
+
     public String getEnumName() {
         return this.name();
     }

@@ -48,7 +48,7 @@ public enum ProductUnabledEnum implements BaseEnum<ProductUnabledEnum, Integer> 
         return valueMap;
     }
 
-    @Override
+
     public String getEnumName() {
         return this.name();
     }

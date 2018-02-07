@@ -48,7 +48,7 @@ public enum PaytimeTypeEnum implements BaseEnum<PaytimeTypeEnum, Integer> {
         return valueMap;
     }
 
-    @Override
+
     public String getEnumName() {
         return this.name();
     }

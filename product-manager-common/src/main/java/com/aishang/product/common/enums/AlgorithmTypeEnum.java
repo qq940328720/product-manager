@@ -48,7 +48,7 @@ public enum AlgorithmTypeEnum implements BaseEnum<AlgorithmTypeEnum, Integer> {
         return valueMap;
     }
 
-    @Override
+
     public String getEnumName() {
         return this.name();
     }

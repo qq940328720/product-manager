@@ -50,7 +50,7 @@ public enum ProductStateEnum implements BaseEnum<ProductStateEnum, Integer> {
         return valueMap;
     }
 
-    @Override
+
     public String getEnumName() {
         return this.name();
     }

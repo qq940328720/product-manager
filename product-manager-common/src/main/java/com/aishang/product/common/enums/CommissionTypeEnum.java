@@ -47,7 +47,7 @@ public enum CommissionTypeEnum implements BaseEnum<CommissionTypeEnum, Integer> 
         return valueMap;
     }
 
-    @Override
+
     public String getEnumName() {
         return this.name();
     }

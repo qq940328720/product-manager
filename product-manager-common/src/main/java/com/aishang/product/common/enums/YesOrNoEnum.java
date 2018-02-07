@@ -45,7 +45,7 @@ public enum YesOrNoEnum implements BaseEnum<YesOrNoEnum, Integer> {
         return valueMap;
     }
 
-    @Override
+
     public String getEnumName() {
         return this.name();
     }

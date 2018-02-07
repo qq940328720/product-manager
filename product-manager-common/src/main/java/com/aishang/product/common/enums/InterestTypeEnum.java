@@ -47,7 +47,7 @@ public enum InterestTypeEnum implements BaseEnum<InterestTypeEnum, Integer> {
         return valueMap;
     }
 
-    @Override
+
     public String getEnumName() {
         return this.name();
     }
