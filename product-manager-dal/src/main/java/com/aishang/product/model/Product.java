@@ -1,15 +1,12 @@
 package com.aishang.product.model;
 
-import com.hc.common.redis.pojo.RedisBaseDTO;
-import com.hc.support.dal.model.BaseModel;
-
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * 产品
  */
-public class Product extends BaseModel<Integer> implements RedisBaseDTO {
+public class Product {
 
 //    /**
 //     * @Fields serialVersionUID : TODO
@@ -52,7 +49,7 @@ public class Product extends BaseModel<Integer> implements RedisBaseDTO {
 
     private String bizid;
 
-    @Override
+
     public boolean isValid() {
         return false;
     }
@@ -137,12 +134,12 @@ public class Product extends BaseModel<Integer> implements RedisBaseDTO {
         return result;
     }
 
-    @Override
+
     public Integer getId() {
         return id;
     }
 
-    @Override
+
     public void setId(Integer id) {
         this.id = id;
     }

@@ -1,12 +1,12 @@
 package com.aishang.product.dao;
 
 import com.aishang.product.model.StateChangeLog;
-import com.hc.support.dal.mybatis.MyBatisDao;
+import org.springframework.stereotype.Service;
 
 /**
  * 产品状态变更历史数据接口
  */
-@MyBatisDao
+@Service
 public interface StateChangeLogDao {
 
     /**

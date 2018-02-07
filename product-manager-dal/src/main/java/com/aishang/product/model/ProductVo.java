@@ -1,18 +1,9 @@
 package com.aishang.product.model;
 
-import com.aishang.product.common.enums.*;
-import com.hc.common.redis.pojo.RedisBaseDTO;
-import com.hc.support.dal.model.BaseModel;
-import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiParam;
-
-import java.math.BigDecimal;
-import java.util.Date;
-
 /**
  * 产品
  */
-public class ProductVo extends Product implements RedisBaseDTO {
+public class ProductVo extends Product {
 
     /**
      * @Fields serialVersionUID : TODO

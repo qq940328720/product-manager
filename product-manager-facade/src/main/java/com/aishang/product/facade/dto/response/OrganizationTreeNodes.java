@@ -27,7 +27,7 @@ public class OrganizationTreeNodes {
     @ApiModelProperty(value = "节点等级(1:爱尚金服,2:大区,3:省,4:市,5:区,6:商户,7:门店)")
     private Integer level;
     @ApiModelProperty(value = "子节点")
-    private List<OrganizationTreeNodes> nodes = new ArrayList<>();
+    private List<OrganizationTreeNodes> nodes = new ArrayList<OrganizationTreeNodes>();
 
     public Integer getLevel() {
         return level;

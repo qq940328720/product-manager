@@ -11,16 +11,18 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.xyd.third</groupId>
-            <artifactId>xyd-support-spring-mybatis-mysql-druid</artifactId>
-        </dependency>
-        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>product-manager-common</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.xyd.common</groupId>
-            <artifactId>common-redis</artifactId>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>4.3.10.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.4.5</version>
         </dependency>
     </dependencies>
 

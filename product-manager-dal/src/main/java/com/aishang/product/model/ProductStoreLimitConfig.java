@@ -1,11 +1,8 @@
 package com.aishang.product.model;
 
-import com.hc.common.redis.pojo.RedisBaseDTO;
-import com.hc.support.dal.model.BaseModel;
-
 import java.util.Date;
 
-public class ProductStoreLimitConfig extends BaseModel<Integer> implements RedisBaseDTO {
+public class ProductStoreLimitConfig {
     private Integer id;
 
     private String productCode;
@@ -34,7 +31,7 @@ public class ProductStoreLimitConfig extends BaseModel<Integer> implements Redis
         super();
     }
 
-    @Override
+
     public boolean isValid() {
         return false;
     }

@@ -45,7 +45,7 @@ public enum OpenOrCloseEnum implements BaseEnum<OpenOrCloseEnum, Integer> {
         return valueMap;
     }
 
-    @Override
+
     public String getEnumName() {
         return this.name();
     }

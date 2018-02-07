@@ -18,69 +18,13 @@
         <module>product-manager-facade</module>
         <module>product-manager-swagger</module>
     </modules>
-    <parent>
-        <groupId>com.xyd.parent</groupId>
-        <artifactId>xyd-parent</artifactId>
-        <version>1.0.0.RELEASE</version>
-    </parent>
 
     <properties>
         <common.logback.version>1.0.0.RELEASE</common.logback.version>
-        <xyd.common.core.version>1.0.0.RELEASE</xyd.common.core.version>
-        <xyd.common.redis.version>1.0.1.RELEASE</xyd.common.redis.version>
-        <xyd.third.mvc.core.version>1.0.0.RELEASE</xyd.third.mvc.core.version>
-        <xyd.third.springmvc.version>1.0.0.RELEASE</xyd.third.springmvc.version>
-        <xyd.third.springweb.version>1.0.0.RELEASE</xyd.third.springweb.version>
-        <xyd.third.springcore.version>1.0.0.RELEASE</xyd.third.springcore.version>
-        <xyd.third.springsecurity.version>1.0.0.RELEASE</xyd.third.springsecurity.version>
-        <xyd.third.springsecurity.redis.version>1.0.1.RELEASE</xyd.third.springsecurity.redis.version>
-        <xyd.third.web.config.version>1.0.0.RELEASE</xyd.third.web.config.version>
-        <xyd.third.dal.version>1.0.0.RELEASE</xyd.third.dal.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-
-            <dependency>
-                <groupId>com.xyd.common</groupId>
-                <artifactId>common-redis</artifactId>
-                <version>${xyd.common.redis.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.xyd.third</groupId>
-                <artifactId>xyd-mvc-core</artifactId>
-                <version>${xyd.third.mvc.core.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.xyd.third</groupId>
-                <artifactId>xyd-support-springcore</artifactId>
-                <version>${xyd.third.springcore.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.xyd.third</groupId>
-                <artifactId>xyd-support-spring-mybatis-mysql-druid</artifactId>
-                <version>${xyd.third.dal.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.xyd.third</groupId>
-                <artifactId>xyd-mvc-support-springweb</artifactId>
-                <version>${xyd.third.springweb.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.xyd.third</groupId>
-                <artifactId>xyd-mvc-support-springsecurity</artifactId>
-                <version>${xyd.third.springsecurity.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.xyd.third</groupId>
-                <artifactId>xyd-mvc-support-springsecurity-redis</artifactId>
-                <version>${xyd.third.springsecurity.redis.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.xyd.third</groupId>
-                <artifactId>xyd-mvc-support-springmvc</artifactId>
-                <version>${xyd.third.springmvc.version}</version>
-            </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>product-manager-facade</artifactId>

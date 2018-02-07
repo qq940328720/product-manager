@@ -1,12 +1,12 @@
 package com.aishang.product.dao;
 
 import com.aishang.product.model.Dictionary;
-import com.hc.support.dal.mybatis.MyBatisDao;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@MyBatisDao
+@Service
 public interface DictionaryDao {
     int deleteByPrimaryKey(Integer id);
 

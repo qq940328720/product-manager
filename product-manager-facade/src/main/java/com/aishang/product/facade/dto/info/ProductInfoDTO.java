@@ -1,7 +1,6 @@
 package com.aishang.product.facade.dto.info;
 
 import com.aishang.product.common.enums.*;
-import com.hc.mvc.core.dto.base.BaseInfoDTO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -10,7 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Created by ylj on 17-10-3.
  */
 @ApiModel(description = "产品实体信息")
-public class ProductInfoDTO extends BaseInfoDTO {
+public class ProductInfoDTO {
 
     @ApiModelProperty(value = "业务ID")
     private String bizid;

@@ -12,7 +12,7 @@ public class ProductResponseDTO extends RuleBaseResponseDTO {
 
     private List<ProductInfoDTO> data;
 
-    @Override
+
     public List<ProductInfoDTO> getData() {
         return data;
     }

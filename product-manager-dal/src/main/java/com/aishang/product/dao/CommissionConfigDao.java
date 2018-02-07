@@ -1,15 +1,15 @@
 package com.aishang.product.dao;
 
 import com.aishang.product.model.CommissionConfig;
-import com.hc.support.dal.mybatis.MyBatisDao;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * 产品分润配置数据接口
  */
-@MyBatisDao
+@Service
 public interface CommissionConfigDao {
 
     /**

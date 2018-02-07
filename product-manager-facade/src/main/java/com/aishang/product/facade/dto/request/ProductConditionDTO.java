@@ -4,9 +4,6 @@ import com.aishang.product.common.enums.ProductStateEnum;
 import com.aishang.product.facade.dto.base.RuleBaseRequestDTO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.hibernate.validator.constraints.NotBlank;
-
-import javax.validation.constraints.NotNull;
 
 /**
  * 查询产品列表的条件的请求实体

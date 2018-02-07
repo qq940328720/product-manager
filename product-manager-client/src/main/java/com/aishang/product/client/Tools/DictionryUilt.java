@@ -2,18 +2,13 @@ package com.aishang.product.client.Tools;
 
 import com.aishang.product.client.dto.DictionaryInfo;
 import com.aishang.product.client.dto.DictionaryResponse;
-import com.aishang.product.client.dto.DictionaryTreeInfo;
 import com.aishang.product.client.dto.DictionaryTreeResponse;
 import com.aishang.product.dao.DictionaryDao;
 import com.aishang.product.dao.DictionaryRelationDao;
 import com.aishang.product.model.Dictionary;
-import com.aishang.product.model.DictionaryRelation;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
-//import com.aishang.dictionary.client.enums.DicType;
-//import com.aishang.dictionary.client.enums.DicTreeType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
@@ -55,7 +50,7 @@ public class DictionryUilt {
         System.out.print("实例化完成。。。。。");
 
         executorService.submit(new Runnable() {
-            @Override
+            
             public void run() {
 
                 //同步银行

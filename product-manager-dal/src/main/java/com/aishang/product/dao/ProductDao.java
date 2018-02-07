@@ -2,16 +2,16 @@ package com.aishang.product.dao;
 
 import com.aishang.product.model.Product;
 import com.aishang.product.model.ProductVo;
-import com.hc.support.dal.mybatis.MyBatisDao;
 import exception.MyBizException;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * 产品数据接口
  */
-@MyBatisDao
+@Service
 public interface ProductDao {
 
     /**
