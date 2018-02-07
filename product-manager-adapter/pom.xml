@@ -25,6 +25,7 @@
         <dependency>
             <groupId>ma.glasnost.orika</groupId>
             <artifactId>orika-core</artifactId>
+            <version>1.4.1</version>
         </dependency>
         <dependency>
             <groupId>com.aishang.product-manager</groupId>
