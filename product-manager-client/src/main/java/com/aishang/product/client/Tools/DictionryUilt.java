@@ -12,8 +12,8 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
-import com.aishang.dictionary.client.enums.DicType;
-import com.aishang.dictionary.client.enums.DicTreeType;
+//import com.aishang.dictionary.client.enums.DicType;
+//import com.aishang.dictionary.client.enums.DicTreeType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
@@ -61,61 +61,61 @@ public class DictionryUilt {
                 //同步银行
                 RestTemplate restTemplate = new RestTemplate();
                 ObjectMapper objectMapper = new ObjectMapper();
-                objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);//ObjectMapper转换忽略多余字段
-                String urlable = dicUrl + "/dictionarys/getDataGrid?dataType=" + DicType.PROD_ENABLE_REASON.getEnumName();
-                DictionryUilt.this.updateDictionary(restTemplate, objectMapper, urlable);
-                String urldisable = dicUrl + "/dictionarys/getDataGrid?dataType=" + DicType.PROD_DISABLE_REASON.getEnumName();
-                DictionryUilt.this.updateDictionary(restTemplate, objectMapper, urldisable);
-                String urldel = dicUrl + "/dictionarys/getDataGrid?dataType=" + DicType.PROD_DEL_REASON.getEnumName();
-                DictionryUilt.this.updateDictionary(restTemplate, objectMapper, urldel);
-                String urlrole = dicUrl + "/dictionarys/getDataGrid?dataType=" + DicType.PROD_ROLE.getEnumName();
-                DictionryUilt.this.updateDictionary(restTemplate, objectMapper, urlrole);
-                //同步产品类型
-                String urlProduct = dicUrl + "/dictionarys/tree/getDataGrid?treeType=" + DicTreeType.PRODUCT.getEnumName();
-                String xmlResultProduct = restTemplate.getForObject(urlProduct, String.class);
+//                objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);//ObjectMapper转换忽略多余字段
+//                String urlable = dicUrl + "/dictionarys/getDataGrid?dataType=" + DicType.PROD_ENABLE_REASON.getEnumName();
+//                DictionryUilt.this.updateDictionary(restTemplate, objectMapper, urlable);
+//                String urldisable = dicUrl + "/dictionarys/getDataGrid?dataType=" + DicType.PROD_DISABLE_REASON.getEnumName();
+//                DictionryUilt.this.updateDictionary(restTemplate, objectMapper, urldisable);
+//                String urldel = dicUrl + "/dictionarys/getDataGrid?dataType=" + DicType.PROD_DEL_REASON.getEnumName();
+//                DictionryUilt.this.updateDictionary(restTemplate, objectMapper, urldel);
+//                String urlrole = dicUrl + "/dictionarys/getDataGrid?dataType=" + DicType.PROD_ROLE.getEnumName();
+//                DictionryUilt.this.updateDictionary(restTemplate, objectMapper, urlrole);
+//                //同步产品类型
+//                String urlProduct = dicUrl + "/dictionarys/tree/getDataGrid?treeType=" + DicTreeType.PRODUCT.getEnumName();
+//                String xmlResultProduct = restTemplate.getForObject(urlProduct, String.class);
                 DictionaryTreeResponse treeResponse = null;
-                if (!StringUtils.isBlank(xmlResultProduct)) {
-                    try {
-                        treeResponse = objectMapper.readValue(xmlResultProduct, DictionaryTreeResponse.class);
-                    } catch (IOException e) {
-                        log.error("ObjectMapper转换字段异常(同步产品类型字典)");
-                    }
-                    if (treeResponse != null && treeResponse.getData() != null && treeResponse.getData().size() > 0) {
-                        for (DictionaryTreeInfo info : treeResponse.getData()) {
-                            Dictionary dictionary = new Dictionary();
-                            dictionary.setDataCode(info.getDataCode());
-                            dictionary.setDataName(info.getDataName());
-                            dictionary.setDataValue(info.getDataValue());
-                            dictionary.setCreateUserId(info.getCreateUserId());
-                            dictionary.setBizid(info.getBizid());
-                            dictionary.setDataRemark(info.getDataRemark());
-                            dictionary.setDataType(info.getDataType());
-                            dictionary.setDeleted(Byte.valueOf("0"));
-                            try {
-                                Integer count = dictionaryMapper.getDataCountByCode(dictionary.getDataCode());
-                                if (count == 0)
-                                    dictionaryMapper.insert(dictionary);
-                                else
-                                    dictionaryMapper.updateByPrimaryKey(dictionary);
-                            } catch (Exception e) {
-                                log.error("同步字典异常" + info.getDataCode() + e.getMessage());
-                            }
-                            DictionaryRelation relation = new DictionaryRelation();
-                            relation.setDataCode(info.getDataCode());
-                            relation.setParentCode(info.getParentCode());
-                            relation.setDeleted(Byte.valueOf("0"));
-                            try {
-                                Integer count = relationMapper.getDataCountByCode(relation.getDataCode(), relation.getParentCode());
-                                if (count == 0)
-                                    relationMapper.insert(relation);
-                                else
-                                    relationMapper.updateByPrimaryKey(relation);
-                            } catch (Exception e) {
-                                log.error("同步字典关系异常" + info.getDataCode() + e.getMessage());
-                            }
-                        }
-                    }
-                }
+//                if (!StringUtils.isBlank(xmlResultProduct)) {
+//                    try {
+//                        treeResponse = objectMapper.readValue(xmlResultProduct, DictionaryTreeResponse.class);
+//                    } catch (IOException e) {
+//                        log.error("ObjectMapper转换字段异常(同步产品类型字典)");
+//                    }
+//                    if (treeResponse != null && treeResponse.getData() != null && treeResponse.getData().size() > 0) {
+//                        for (DictionaryTreeInfo info : treeResponse.getData()) {
+//                            Dictionary dictionary = new Dictionary();
+//                            dictionary.setDataCode(info.getDataCode());
+//                            dictionary.setDataName(info.getDataName());
+//                            dictionary.setDataValue(info.getDataValue());
+//                            dictionary.setCreateUserId(info.getCreateUserId());
+//                            dictionary.setBizid(info.getBizid());
+//                            dictionary.setDataRemark(info.getDataRemark());
+//                            dictionary.setDataType(info.getDataType());
+//                            dictionary.setDeleted(Byte.valueOf("0"));
+//                            try {
+//                                Integer count = dictionaryMapper.getDataCountByCode(dictionary.getDataCode());
+//                                if (count == 0)
+//                                    dictionaryMapper.insert(dictionary);
+//                                else
+//                                    dictionaryMapper.updateByPrimaryKey(dictionary);
+//                            } catch (Exception e) {
+//                                log.error("同步字典异常" + info.getDataCode() + e.getMessage());
+//                            }
+//                            DictionaryRelation relation = new DictionaryRelation();
+//                            relation.setDataCode(info.getDataCode());
+//                            relation.setParentCode(info.getParentCode());
+//                            relation.setDeleted(Byte.valueOf("0"));
+//                            try {
+//                                Integer count = relationMapper.getDataCountByCode(relation.getDataCode(), relation.getParentCode());
+//                                if (count == 0)
+//                                    relationMapper.insert(relation);
+//                                else
+//                                    relationMapper.updateByPrimaryKey(relation);
+//                            } catch (Exception e) {
+//                                log.error("同步字典关系异常" + info.getDataCode() + e.getMessage());
+//                            }
+//                        }
+//                    }
+//                }
             }
         });
         executorService.shutdown();
