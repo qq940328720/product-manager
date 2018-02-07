@@ -72,11 +72,6 @@
             <artifactId>dictionary-manager-common</artifactId>
             <version>1.6.3-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>com.aishang.dictionary</groupId>
-            <artifactId>dictionary-manager-common</artifactId>
-            <version>1.6.3-SNAPSHOT</version>
-        </dependency>
 
     </dependencies>
     <profiles>
