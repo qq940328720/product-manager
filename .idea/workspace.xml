@@ -2,13 +2,82 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9064e9c9-2114-4a52-a8bd-0faa0b5dd655" name="Default" comment="gdggad">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/product-manager-assembly/target/product-manager-assembly/WEB-INF/lib/product-manager-adapter-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/product-manager-assembly/target/product-manager-assembly/WEB-INF/lib/product-manager-adapter-1.0-SNAPSHOT.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/product-manager-assembly/target/product-manager-assembly/WEB-INF/lib/product-manager-client-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/product-manager-assembly/target/product-manager-assembly/WEB-INF/lib/product-manager-client-1.0-SNAPSHOT.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/product-manager-assembly/target/product-manager-assembly/WEB-INF/lib/product-manager-common-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/product-manager-assembly/target/product-manager-assembly/WEB-INF/lib/product-manager-common-1.0-SNAPSHOT.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/product-manager-assembly/target/product-manager-assembly/WEB-INF/lib/product-manager-dal-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/product-manager-assembly/target/product-manager-assembly/WEB-INF/lib/product-manager-dal-1.0-SNAPSHOT.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/product-manager-assembly/target/product-manager-assembly/WEB-INF/lib/product-manager-facade-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/product-manager-assembly/target/product-manager-assembly/WEB-INF/lib/product-manager-facade-1.0-SNAPSHOT.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/product-manager-assembly/target/product-manager-assembly/WEB-INF/lib/product-manager-web-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/product-manager-assembly/target/product-manager-assembly/WEB-INF/lib/product-manager-web-1.0-SNAPSHOT.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/product_manager_assembly_war.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/product_manager_assembly_war_exploded.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__aopalliance_aopalliance_1_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_fastjson_1_2_13.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_0_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_3_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_5_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_8_5.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_9_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_5_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_9_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_5_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_9_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_18_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_20_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_googlecode_concurrentlinkedhashmap_concurrentlinkedhashmap_lru_1_2_jdk5.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_thoughtworks_paranamer_paranamer_2_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_collections_commons_collections_3_2_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_core_2_7_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_schema_2_7_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_spi_2_7_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_spring_web_2_7_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_swagger2_2_7_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_swagger_common_2_7_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_swagger_swagger_annotations_1_5_13.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_swagger_swagger_models_1_5_13.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_javax_servlet_api_3_0_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_validation_validation_api_1_1_0_Final.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ma_glasnost_orika_orika_core_1_4_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_6_14.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_logstash_logback_logstash_logback_encoder_4_11.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_aopalliance_com_springsource_org_aopalliance_1_0_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_com_springsource_org_apache_commons_logging_1_1_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4_6.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_7_0_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_jasper_7_0_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_logging_juli_7_0_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_com_springsource_org_aspectj_weaver_1_7_2_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_hibernate_validator_5_1_1_Final.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_16_1_GA.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_21_0_GA.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_1_3_GA.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mapstruct_mapstruct_1_1_0_Final.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_3_4_5.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_reflections_reflections_0_9_11.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_log4j_over_slf4j_1_7_25.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_24.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_25.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_org_springframework_aop_3_2_1_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_org_springframework_beans_3_2_1_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_org_springframework_context_3_2_1_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_org_springframework_core_3_2_1_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_org_springframework_oxm_3_2_1_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_org_springframework_web_3_2_1_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_org_springframework_web_servlet_3_2_1_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_plugin_spring_plugin_core_1_2_0_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_plugin_spring_plugin_metadata_1_2_0_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_config_4_2_3_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_core_4_2_3_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_4_3_10_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_4_3_10_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_4_3_10_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_4_3_10_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_4_3_10_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_4_3_10_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_4_3_10_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/product-manager-parent.iml" afterPath="$PROJECT_DIR$/product-manager-parent.iml" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/product-manager-client/target/" />
@@ -65,103 +134,63 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="product-manager-client.iml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/product-manager-client/product-manager-client.iml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="7" column="64" lean-forward="false" selection-start-line="7" selection-start-column="64" selection-end-line="7" selection-end-column="64" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="product-manager-adapter.iml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/product-manager-adapter/product-manager-adapter.iml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="7" column="64" lean-forward="false" selection-start-line="7" selection-start-column="64" selection-end-line="7" selection-end-column="64" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-360">
+            <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1518053214899" expanded="true" signature="116166:116183" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="116166:116201" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="116166:116214" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="116166:116229" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="116264:118866" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="116277:118851" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="116331:116731" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="116350:116716" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="116479:116696" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="116519:116662" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="116540:116640" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="116781:117090" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="116800:117075" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="116877:117055" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="116917:117021" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="116938:116999" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="117141:117406" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="117160:117391" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="117193:117371" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="117233:117337" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="117254:117315" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="117449:117755" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="117468:117740" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="117542:117720" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="117582:117686" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="117603:117664" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="117806:118135" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="117825:118120" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="117915:118100" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="117955:118066" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="117976:118044" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="118187:118524" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="118206:118509" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="118311:118489" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="118351:118455" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="118372:118433" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="118572:118837" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="118591:118822" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="118624:118802" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="118664:118768" ph="..." />
-                <marker date="1518053214899" expanded="true" signature="118685:118746" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="116029:116071" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="116029:116089" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="116029:116102" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="116029:116117" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="116152:118754" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="116165:118739" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="116219:116619" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="116238:116604" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="116367:116584" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="116407:116550" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="116428:116528" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="116669:116978" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="116688:116963" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="116765:116943" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="116805:116909" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="116826:116887" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="117029:117294" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="117048:117279" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="117081:117259" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="117121:117225" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="117142:117203" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="117337:117643" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="117356:117628" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="117430:117608" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="117470:117574" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="117491:117552" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="117694:118023" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="117713:118008" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="117803:117988" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="117843:117954" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="117864:117932" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="118075:118412" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="118094:118397" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="118199:118377" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="118239:118343" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="118260:118321" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="118460:118725" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="118479:118710" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="118512:118690" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="118552:118656" ph="..." />
+                <marker date="1518053474207" expanded="true" signature="118573:118634" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="product-manager.iml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="product-manager.iml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/product-manager.iml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="product-manager-common.iml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/product-manager-common/product-manager-common.iml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="40">
-              <caret line="2" column="64" lean-forward="false" selection-start-line="2" selection-start-column="64" selection-end-line="2" selection-end-column="64" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="product-manager-dal.iml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/product-manager-dal/product-manager-dal.iml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="7" column="64" lean-forward="false" selection-start-line="7" selection-start-column="64" selection-end-line="7" selection-end-column="64" />
+            <state relative-caret-position="300">
+              <caret line="15" column="9" lean-forward="true" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -172,36 +201,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="product-manager-facade.iml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/product-manager-facade/product-manager-facade.iml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="40">
-              <caret line="2" column="64" lean-forward="false" selection-start-line="2" selection-start-column="64" selection-end-line="2" selection-end-column="64" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="product-manager-swagger.iml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/product-manager-swagger/product-manager-swagger.iml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="7" column="64" lean-forward="false" selection-start-line="7" selection-start-column="64" selection-end-line="7" selection-end-column="64" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="product-manager-web.iml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/product-manager-web/product-manager-web.iml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="7" column="64" lean-forward="false" selection-start-line="7" selection-start-column="64" selection-end-line="7" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -268,7 +267,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/product-manager-assembly/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/product-manager-client/src/main/java/com/aishang/product/client/Tools/MerchantStoreUilt.java" />
         <option value="$PROJECT_DIR$/product-manager-facade/src/main/java/com/aishang/product/facade/dto/out/ProductCheckResponseDTO.java" />
         <option value="$PROJECT_DIR$/product-manager-common/src/main/java/com/aishang/product/common/enums/InterestTypeEnum.java" />
@@ -319,6 +317,7 @@
         <option value="$PROJECT_DIR$/product-manager-adapter/product-manager-adapter.iml" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/product-manager-common/product-manager-common.iml" />
+        <option value="$PROJECT_DIR$/product-manager.iml" />
       </list>
     </option>
   </component>
@@ -348,42 +347,7 @@
     </option>
   </component>
   <component name="MavenProjectNavigator">
-    <treeState>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="product-manager-assembly Maven Webapp" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="product-manager-assembly Maven Webapp" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Lifecycle" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$LifecycleNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Profiles" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProfilesNode" />
-        </PATH_ELEMENT>
-      </PATH>
-    </treeState>
+    <treeState />
   </component>
   <component name="ProjectFrameBounds">
     <option name="width" value="1870" />
@@ -407,8 +371,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -431,7 +396,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="product-manager-assembly" />
+              <option name="myItemId" value="product-manager-web" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -445,87 +410,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="product-manager-assembly" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="target" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="product-manager-assembly" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="product-manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="product-manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="product-manager-assembly" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="target" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="product-manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="product-manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="product-manager-assembly" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="product-manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="product-manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="product-manager-assembly" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
+              <option name="myItemId" value="product-manager-swagger" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1152,6 +1042,7 @@
       <workItem from="1517448308004" duration="1987000" />
       <workItem from="1517915041043" duration="147000" />
       <workItem from="1518051923807" duration="1318000" />
+      <workItem from="1518053387959" duration="95000" />
     </task>
     <task id="LOCAL-00033">
       <created>1510900090713</created>
@@ -1500,7 +1391,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="255904000" />
+    <option name="totallyTimeSpent" value="255999000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1528,19 +1419,18 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49634275" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22149123" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22423245" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1548,6 +1438,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1987,14 +1878,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/product-manager.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/product-manager-dal/product-manager-dal.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
@@ -2053,50 +1936,50 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-360">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1518053214899" expanded="true" signature="116166:116183" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="116166:116201" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="116166:116214" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="116166:116229" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="116264:118866" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="116277:118851" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="116331:116731" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="116350:116716" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="116479:116696" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="116519:116662" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="116540:116640" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="116781:117090" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="116800:117075" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="116877:117055" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="116917:117021" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="116938:116999" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="117141:117406" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="117160:117391" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="117193:117371" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="117233:117337" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="117254:117315" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="117449:117755" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="117468:117740" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="117542:117720" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="117582:117686" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="117603:117664" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="117806:118135" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="117825:118120" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="117915:118100" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="117955:118066" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="117976:118044" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="118187:118524" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="118206:118509" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="118311:118489" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="118351:118455" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="118372:118433" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="118572:118837" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="118591:118822" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="118624:118802" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="118664:118768" ph="..." />
-            <marker date="1518053214899" expanded="true" signature="118685:118746" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="116029:116071" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="116029:116089" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="116029:116102" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="116029:116117" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="116152:118754" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="116165:118739" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="116219:116619" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="116238:116604" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="116367:116584" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="116407:116550" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="116428:116528" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="116669:116978" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="116688:116963" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="116765:116943" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="116805:116909" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="116826:116887" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="117029:117294" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="117048:117279" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="117081:117259" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="117121:117225" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="117142:117203" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="117337:117643" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="117356:117628" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="117430:117608" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="117470:117574" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="117491:117552" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="117694:118023" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="117713:118008" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="117803:117988" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="117843:117954" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="117864:117932" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="118075:118412" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="118094:118397" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="118199:118377" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="118239:118343" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="118260:118321" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="118460:118725" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="118479:118710" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="118512:118690" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="118552:118656" ph="..." />
+            <marker date="1518053474207" expanded="true" signature="118573:118634" ph="..." />
           </folding>
         </state>
       </provider>
@@ -2105,6 +1988,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
           <caret line="2" column="64" lean-forward="false" selection-start-line="2" selection-start-column="64" selection-end-line="2" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/product-manager.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="9" lean-forward="true" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
           <folding />
         </state>
       </provider>
