@@ -3,7 +3,6 @@ package com.aishang.product.client.Tools;
 import com.aishang.product.client.OrgEmployeeResponseDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.logstash.logback.encoder.org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -18,8 +17,6 @@ public class OrgEmployeeUtil {
     private String url;
 
 
-    private static final Logger logger = Logger.getLogger(OrgEmployeeUtil.class);
-
     public OrgEmployeeResponseDTO getEmployeeCode(String adminCode) {
 //        adminCode = "ADMIN2017102315234839";
         if (StringUtils.isBlank(adminCode))
@@ -32,7 +29,6 @@ public class OrgEmployeeUtil {
                 OrgEmployeeResponseDTO responseDTO = new ObjectMapper().readValue(xmlResult, OrgEmployeeResponseDTO.class);
                 return responseDTO;
             } catch (Exception e) {
-                logger.debug(e.getMessage());
                 return null;
             }
         }

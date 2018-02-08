@@ -8,7 +8,6 @@ import com.aishang.product.dao.DictionaryRelationDao;
 import com.aishang.product.model.Dictionary;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
@@ -27,7 +26,6 @@ import java.util.concurrent.Executors;
 @Lazy(false)
 @EnableScheduling
 public class DictionryUilt {
-    private static final Logger log = Logger.getLogger(DictionryUilt.class);
 
     @Autowired
     private DictionaryDao dictionaryMapper;
@@ -129,7 +127,6 @@ public class DictionryUilt {
             try {
                 dictionaryResponse = objectMapper.readValue(xmlResultBank, DictionaryResponse.class);
             } catch (IOException e) {
-                log.error("ObjectMapper转换字段异常(同步字典)");
             }
             if (dictionaryResponse != null && dictionaryResponse.getData() != null && dictionaryResponse.getData().size() > 0) {
                 for (DictionaryInfo info : dictionaryResponse.getData()) {
@@ -149,7 +146,6 @@ public class DictionryUilt {
                         else
                             dictionaryMapper.updateByPrimaryKey(dictionary);
                     } catch (Exception e) {
-                        log.error("同步字典异常(添加)" + info.getDataCode() + e.getMessage());
                     }
                 }
             }
